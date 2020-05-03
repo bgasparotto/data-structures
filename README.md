@@ -16,9 +16,12 @@
   the number `21`, the time complexity should be *O(n)* even if we find the number at the third
   iteration.
   
-![Big-O notation time complexity chart](charts/computational_complexity.png)
-  
 > The right way of reading the notation is "O of 1, O of log n", etc
 
 > *Binary logarithms* (log n) are the inverse function of the power of two n² function. They are
 commonly used in binary search and related algorithms.
+
+The chart below demonstrates the relation of the `n` number of elements against the `N` time needed
+by different time complexity expressions:
+
+![Big-O notation time complexity chart](charts/computational_complexity.png)
