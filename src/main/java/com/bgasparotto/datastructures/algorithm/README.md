@@ -1,4 +1,11 @@
 # Sort Algorithms
+*Stable Sort Algorithms* preserve the relative order of duplicates; whereas *Unstable Sort
+Algorithms* do not.
+
+*Stable Sort Algorithms* are preferred. In some cases, such as when sorting primitives, it doesn't
+really matter, but for when sorting objects it could make a difference, e.g. when you sort the same
+array of `Person` twice: first by `name`, then by `age`. In this case, an unstable sort would
+produce unreliable results.
 
 ## Bubble Sort: O(n²)
 - In-place algorithm: uses only one array, logically partitioning the array into *sorted* and

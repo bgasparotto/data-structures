@@ -22,7 +22,7 @@ public class BubbleSort {
     }
 
     public static void swap(int[] array, int i, int j) {
-        if (i == j) {
+        if (i == j) { // this makes it a Stable Sort Algorithm, by not swapping duplicates
             return;
         }
 
