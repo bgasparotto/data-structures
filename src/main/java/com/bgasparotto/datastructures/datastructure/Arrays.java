@@ -19,5 +19,10 @@ public class Arrays {
         for (int value : otherIntArray) {
             System.out.println(value);
         }
+
+        int[] anotherIntArray = {5, 8, 32, -10, 12, 33};
+        for (int value : anotherIntArray) {
+            System.out.println(value);
+        }
     }
 }

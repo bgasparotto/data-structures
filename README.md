@@ -15,6 +15,13 @@
   array `[1, 5, 21, -5, 3, 6, 88` and is calculating the time complexity for searching the index of
   the number `21`, the time complexity should be *O(n)* even if we find the number at the third
   iteration.
+- It is common for algorithms to contain small optimisations that slightly reduce the number of
+  operations related to `n` as the algorithm progresses, however, we are not looking at Big-O
+  notation mathematically, what we want instead is an approximation to evaluate how efficient the
+  algorithm is.
+- A tip to discover the time complexity is to look at how many loops the algorithm has, e.g:
+  - 1 loop: O(n)
+  - 1 outer loop with an inner loop: O(n²)
   
 > The right way of reading the notation is "O of 1, O of log n", etc
 
