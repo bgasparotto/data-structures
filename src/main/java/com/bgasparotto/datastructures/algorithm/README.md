@@ -9,7 +9,7 @@ produce unreliable results.
 
 ## Bubble Sort: O(n²)
 - The idea of the algorithm is that it will "bubble up" the big values all the way to the end (or to
-  the top if you look at it vertically), one-by-one, in a sorted manner.
+  the top if you look at it vertically), one-by-one, in sorted manner.
 - In-place algorithm: uses only one array, logically partitioning the array into *sorted* and
   *unsorted*
 - The partitioning is defined by initialising a variable such as `unsortedPartitionIndex`
@@ -41,3 +41,25 @@ produce unreliable results.
 - It is an *unstable* algorithm, given there is no guarantee that it won't swap the current
   `largestIndex` value from the iteration with the value of the `unsortedPartitionIndex`.
   
+## Insertion Sort: O(n²)
+- This algorithm partitions the beginning of the array and inserts value from the unsorted partition
+  into the sorted partition in sorted manner. That happens by shifting the values from the unsorted
+  partition to their right until we find the right place for the new element.
+- In-place algorithm: uses only one array, logically partitioning the array into *sorted* and
+  *unsorted*, and keeping track of the index of the largest number until the end of each iteration.
+- We define the partition by initialising a variable such as `firstUnsortedIndex` with value `1`.
+  Since the left side of the partition is still an array with a single element, it is safe to say
+  that it is sorted.
+- A loop starts at index `firstUnsortedIndex = 1` and goes until the end of the array:
+  - A variable `newElement` is assigned the value of `array[firstUnsortedIndex]`.
+  - A variable `i` is initialised with the value of the last sorted index, which will be
+    `firstUnsortedIndex - 1`;
+  - The inner loop goes from the right to the left, comparing the value of `newElement` against
+    `array[i]` until the start of the array:
+      - If `array[firstUnsortedIndex] >= array[i]` then the `newElement` is already at the right
+        place in the sorted partition (not on the entire array, but at least at the sorted
+        partition);
+      - Otherwise, the value of `array[i]` is "shifted to the right", taking over `array[i + 1]`.
+  - When the inner loop hits the start of the array, `newElement` is assigned to it since no bigger
+    values were found in all the iterations through the sorted partition.
+- It is a *stable* algorithm given values that already sitting at the right order don't get swapped.
