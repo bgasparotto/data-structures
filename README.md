@@ -32,3 +32,18 @@ The chart below demonstrates the relation of the `n` number of elements against 
 by different time complexity expressions:
 
 ![Big-O notation time complexity chart](charts/computational_complexity.png)
+
+## Recursion
+- A recursive method is a method that calls itself.
+- In order to recursion to work properly, you need a condition that ends the recursion. 
+  This condition is know as the ***breaking condition***, or the ***base case***.
+- When the recursive call satisfies the base case, one says the recursion *starts to unwind*.
+- However, if no base case is provided, the recursive call stack will grow indefinitely and will
+  resulting in a `StackOverflowError`.
+- Usually, an iterative implementation (such as a *for* loop) runs faster and doesn't use as much
+  memory than recursion. However, sometimes the iterative algorithm isn't as intuitive and as short
+  as the recursive algorithm.
+- Lastly, even when you provide a base case, you can face a `StackOverflowError` if number of calls
+  is too big. Languages such as Scala supports
+  [tail recursion](https://www.drdobbs.com/jvm/tail-call-optimization-and-java/240167044) which 
+  optimises recursive calls, however, ***Java does not***.
