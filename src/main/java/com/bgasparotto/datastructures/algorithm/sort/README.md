@@ -130,3 +130,25 @@ produce unreliable results.
   where the *index is relative to the original array*.
 - If `left[i] <= right[j]`, then `left[i]` is copied to beginning of the temp array, and we
   increment `i` by 1. Otherwise, the same happens to `right[j]` and `j` is incremented by 1.
+  
+## Quick Sort O(n log n)
+- Divide and conquer algorithm
+- Recursive algorithm
+- In-place algorithm
+- Uses a pivot element to partition the array into two logical arrays.
+- Elements < pivot go to its left, and elements > pivot go to right, making the pivot to be in its
+  sorted position
+- The process repeats until the whole array gets partitioned into a series of 1-element arrays, when
+  every element has been the pivot, thus being sorted.
+- In the worst case, its time complexity is O(n²), O(n log n) on average, but on most cases it
+  performs better than Merge Sort.
+- Unstable algorithm
+  
+### Quick Sort Implementation
+- We set `start = 0, i = start`, `end = array.length, j = end`, and `pivot = array[start]` to start
+  the algorithm;
+- Then we look for an element that is less that `pivot` from right to left starting from `--j`, and
+  when we find it, we assign it to position `i`;
+- Then we look for an element that is greater than the `pivot` from left to right starting at `i++`,
+  when we find, similarly, we assign it to the position `j`;
+- We stop the algorithm when the pointers cross paths, when `not i < j` anymore;
