@@ -100,3 +100,33 @@ produce unreliable results.
 - For the sake of abstraction and to remain focused on the sort algorithm, we will use a simpler
   sequence where `gap = array.length / 2` rounded down, then halving the gap each time until we
   reach `1`.
+  
+## Merge Sort: O(n log n)
+- Divide and conquer algorithm
+- Recursive algorithm
+- Has two phases: splitting (in place logically) and merging (not in-place), where splitting leads
+  to faster sorting during the merge phase.
+- Since we are using recursive calls to split left and right, the left part of the split will always
+  run before the right part.
+- *Stable* Algorithm
+  
+### Splitting
+1. Starts with an unsorted array;
+2. Divides the array between left and right;
+   - Divides in the middle for even lengths, or at the implementation's discretion for odd lengths.
+3. Divide both left and right arrays into two arrays each;
+4. Keep splitting until all arrays have only one element each - these arrays are sorted.
+
+### Merging
+1. Merge evey left/right pair of sibling arrays into a sorted array.
+2. After the first merge, we will have a bunch of 2-element sorted arrays.
+3. Then, merge sort those sorted left/right sibling arrays to end up with a bunch of 4-element
+   sorted arrays.
+4. Repeat until you have a single sorted array.
+
+#### Merging Implementation
+- We create a temporary array large enough to hold all the elements in the arrays we are merging;
+- We set `i` to the first index of the left array, and `j` to the first index of the right array,
+  where the *index is relative to the original array*.
+- If `left[i] <= right[j]`, then `left[i]` is copied to beginning of the temp array, and we
+  increment `i` by 1. Otherwise, the same happens to `right[j]` and `j` is incremented by 1.
