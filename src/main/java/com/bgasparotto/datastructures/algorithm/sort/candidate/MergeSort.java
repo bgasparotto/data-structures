@@ -11,8 +11,8 @@ public class MergeSort {
         print(array);
     }
 
-    public static void mergeSort(int[] array, int start, int end) {
-        if (end - start <= 1) { // if one-element array
+    private static void mergeSort(int[] array, int start, int end) {
+        if (isSingleElementPartition(start, end)) {
             return;
         }
 
@@ -22,12 +22,12 @@ public class MergeSort {
         merge(array, start, mid, end);
     }
 
+    private static boolean isSingleElementPartition(int start, int end) {
+        return (end - start) <= 1;
+    }
+
     private static void merge(int[] array, int start, int mid, int end) {
-        /*
-         * Optimisation: if the last element from left partition is less than the first element of the right partition,
-         * considering both array partitions are individually sorted, then the pair of partitions is also already sorted
-         */
-        if (array[mid - 1] <= array[mid]) {
+        if (isLeftPartitionLessThanRightPartition(array, mid)) {
             return;
         }
 
@@ -58,5 +58,13 @@ public class MergeSort {
         while (sortedCopyIndex < sortedIndex) {
             array[start++] = sorted[sortedCopyIndex++];
         }
+    }
+
+    /*
+     * Optimisation: if the last element from left partition is less than the first element of the right partition,
+     * considering both array partitions are individually sorted, then the pair of partitions is also already sorted
+     */
+    private static boolean isLeftPartitionLessThanRightPartition(int[] array, int mid) {
+        return array[mid - 1] <= array[mid];
     }
 }
