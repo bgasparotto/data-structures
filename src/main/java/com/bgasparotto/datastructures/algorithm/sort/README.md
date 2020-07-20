@@ -147,7 +147,7 @@ reach `1`.
 4. Keep splitting until all arrays have only one element each - these arrays are sorted.
 
 ### Merging
-1. Merge evey left/right pair of sibling arrays into a sorted array.
+1. Merge every left/right pair of sibling arrays into a sorted array.
 2. After the first merge, we will have a bunch of 2-element sorted arrays.
 3. Then, merge sort those sorted left/right sibling arrays to end up with a bunch of 4-element
    sorted arrays.
