@@ -181,3 +181,23 @@ reach `1`.
 - Then we look for an element that is greater than the `pivot` from left to right starting at `i++`,
   when we find, similarly, we assign it to the position `j`;
 - We stop the algorithm when the pointers cross paths, when `not i < j` anymore;
+
+## Counting Sort O(n)
+- Not in-place
+- *Unstable* algorithm, but could be made stable with extra steps, for example, by using a
+  LinkedList instead of just increasing the count.
+- Unlike the previous algorithms, Counting Sort can't sort any type of data with any given value
+- Only works with non-negative discrete values (can't work with floats, strings, etc)
+- Values must be within a specific small range
+- It makes assumptions about the data and don't use comparisons
+
+### Counting Sort Implementation
+- We create a new array of integers (count array) of a size which could allocate all possible 
+  numbers from the input array. For example, if the input array has 10 numbers of range from 1 to 
+  100, then the count array should have size 100.
+- Starting at `index = 0`, we iterate through both arrays at the same time;
+- For each value of the input array, we increment the "count" on the index of the target array
+- At the end of the iteration, the count array will have the count of occurrences of the numbers
+  from the input array
+- As the last step, we iterate through the count array writing the respective numbers `n` times
+  their count back into the input array.
