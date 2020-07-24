@@ -201,3 +201,17 @@ reach `1`.
   from the input array
 - As the last step, we iterate through the count array writing the respective numbers `n` times
   their count back into the input array.
+  
+## Radix Sort O(n) but often O(n log n) because of the overhead
+- Stable algorithm
+- In-place depends on which underlying sort algorithm you use
+- Also makes assumptions about the data.
+- The data must have same radix and width
+- *Radix* is the number of possible characters a number or alphabet has. Examples:
+  - Decimal system: radix = 10, since the possible characters range from 0 to 9;
+  - English alphabet: radix = 26, since the possible characters are letters from a to z;
+- *Width* is the length of the value. Examples:
+  - `Hello` has width = 5
+  - `1235` has width = 4
+- As a consequence, it only works with integers or strings.
+- Must use a *stable* sort algorithm at each stage
