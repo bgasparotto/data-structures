@@ -25,6 +25,22 @@ public class RadixSort {
         System.arraycopy(tempArray, 0, array, 0, array.length);
     }
 
+    private int[] createCountingSortArray(int[] array, int radix, int index) {
+        int[] countingSort = new int[radix];
+        for (int element : array) {
+            int elementDigit = getAtIndex(element, radix, index);
+            countingSort[elementDigit]++;
+        }
+
+        return countingSort;
+    }
+
+    private void accumulateCountForStableSort(int[] countingSort) {
+        for (int i = 1; i < countingSort.length; i++) {
+            countingSort[i] += countingSort[i - 1];
+        }
+    }
+
     private int[] sortOnCount(int[] array, int radix, int index, int[] countingSortArray) {
         int inputLength = array.length;
         int[] tempArray = new int[inputLength];
@@ -35,22 +51,6 @@ public class RadixSort {
             tempArray[elementSortedPosition] = array[i];
         }
         return tempArray;
-    }
-
-    private void accumulateCountForStableSort(int[] countingSort) {
-        for (int i = 1; i < countingSort.length; i++) {
-            countingSort[i] += countingSort[i - 1];
-        }
-    }
-
-    private int[] createCountingSortArray(int[] array, int radix, int index) {
-        int[] countingSort = new int[radix];
-        for (int element : array) {
-            int elementDigit = getAtIndex(element, radix, index);
-            countingSort[elementDigit]++;
-        }
-
-        return countingSort;
     }
 
     public int getAtIndex(int value, int radix, int index) {
