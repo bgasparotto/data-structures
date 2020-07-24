@@ -219,6 +219,8 @@ reach `1`.
 ### Radix Sort Implementation
 - You iterate the array, getting digit by digit starting at the right most digit. For example, `4`
   is the right-most digit of `1234`.
-- Then, you sort the array only based on the right-most digit of all elements;
+- Then, you implement a sorting algorithm on the array, but based on that single digit for the
+  evaluations;
 - Repeat it for the right-most - 1 and so on until you sorted the left-most element.
-- For the sorting the digits individually, you can use any stable algorithm of choice.
+- Stable Counting Sort is probably the most popular choice for the internal sorting algorithm of
+  radix sort, however, it works with any stable algorithm.
