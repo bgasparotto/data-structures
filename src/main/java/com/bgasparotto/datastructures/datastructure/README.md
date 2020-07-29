@@ -27,7 +27,7 @@ address of array[5] = 12 + (5 * 4) = 32
 address of array[6] = 12 + (6 * 4) = 36
 ```
 
-## Operations
+### Operations
 If the operation requires a loop, then the complexity is O(n); if it doesn't require a loop, then
 it's O(1).
 ```
@@ -42,7 +42,7 @@ it's O(1).
 | Delete an element by shifting elements          | O(n)            |
 ```
 
-### Retrieval with index
+#### Retrieval with index
 Time complexity is ***O(1)***:
 1. Multiply the size of the element by its index
 2. Get the start address of the array
@@ -55,7 +55,7 @@ Time complexity is ***O(1)***:
 | 1000000       | 3     |
 ```
 
-### Retrieval without index (Search)
+#### Retrieval without index (Search)
 Time complexity is ***O(n)***:
 1. Loop over the array obtaining each element
 2. Compare the element with the wanted value
@@ -66,3 +66,21 @@ Time complexity is ***O(n)***:
 | 1000          | 2000    |
 | 1000000       | 2000000 |
 ```
+
+# Lists
+- It's an abstract data type;
+- It's an ordered collection (also known as sequence);
+- It's good for random access (by index) as the operations are `O(1)`, but additional on a list out
+  of capacity or at a specific index, and deletion are `O(n)`.
+- The user has control where the element is inserted and can retrieve by its index;
+- Popular implementations of List are *ArrayList* and *LinkedList*;
+- To implement your own List, either extend `AbstractList` or `AbstractSequentialList`, as they give
+  you a head start by providing a skeletal implementation. Read the javadoc of both class to decide
+  which one to use.
+  
+# Vector
+- Thread-safe array list, also backed by an array.
+- Since its methods are synchronised, there is a performance hit;
+- It was introduced at Java 1.0, before the popular ArrayList which was only introduced at Java 1.2;
+- If you don't need synchronisation possibly due to using mostly read operations, prefer ArrayList;
+

@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.datastructure;
+package com.bgasparotto.datastructures.datastructure.array;
 
 public class Arrays {
     public static void main(String[] args) {
