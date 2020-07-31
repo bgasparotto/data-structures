@@ -84,3 +84,21 @@ Time complexity is ***O(n)***:
 - It was introduced at Java 1.0, before the popular ArrayList which was only introduced at Java 1.2;
 - If you don't need synchronisation possibly due to using mostly read operations, prefer ArrayList;
 
+# Singly Linked Lists
+- The items are called *nodes*;
+- The first node is called *head*, as in head of the list;
+- Every node, besides carrying its data, carries a reference (link) to the next node;
+- The last node is called *tail* always point to `null`, because nothing comes after it;
+- The list has only to store the reference of the first node (head);
+
+### Insertion O(1)
+You only insert elements at the front of the list, otherwise you would need to transverse all nodes
+until you get to the last node.
+1. Create the new node;
+2. Assign the current head node as the link of the new node;
+3. Assign the new node to the head of the list;
+
+### Deletion O(1)
+You also want to delete from the front of the list, so you don't have to transverse all nodes
+1. Obtain the head node;
+2. Assign the link of the head node to the List's head node;
