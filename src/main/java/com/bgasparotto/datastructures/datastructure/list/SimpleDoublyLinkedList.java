@@ -23,10 +23,6 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
         Node<E> node = new Node<>(element, head);
         head.previous = node;
         head = node;
-        if (tail.previous == null) {
-            tail.previous = node;
-        }
-
         size++;
     }
 
@@ -40,9 +36,6 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
         Node<E> node = new Node<>(tail, element);
         tail.next = node;
         tail = node;
-        if (head.next == null) {
-            head.next = node;
-        }
 
         size++;
     }
