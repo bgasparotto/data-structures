@@ -101,4 +101,31 @@ until you get to the last node.
 ### Deletion O(1)
 You also want to delete from the front of the list, so you don't have to transverse all nodes
 1. Obtain the head node;
-2. Assign the link of the head node to the List's head node;
+2. Assign the *next* field of the head node to the List's head node;
+
+# Doubly Linked Lists
+- In spite of having a **head** node reference, it also has a **tail**;
+- every node in the list has a link to the *next* and *previous* node;
+- Operations on either head or tail nodes are O(1);
+
+### Insertion at head O(1)
+1. Create the new node;
+2. Assign the current head node as the next of the new node;
+3. Assign the previous field of the current head node as the new node;
+4. Assign the new node to the head of the list;
+
+### Insertion at tail O(1)
+1. Create the new node;
+2. Assign the current tail node as the previous node of the new node;
+3. Assign the next field of the current tail node as the new node;
+4. Assign the new node to the tail of the list;
+
+### Deletion from head O(1)
+1. Obtain the head node;
+2. Assign the *next* field of the head node to the List's head node;
+3. Set the *previous* field of the new head node to `null`;
+
+### Deletion from tail O(1)
+1. Obtain the tail node;
+2. Assign the *previous* field of the tail node to the List's tail node;
+3. Set the *next* field of the new tail node to `null`;
