@@ -9,7 +9,7 @@ public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
 
     @Override
     public void add(E element) {
-        addHead(element);
+        addTail(element);
     }
 
     @Override
@@ -83,8 +83,8 @@ public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
     public void deleteHead() {
         checkIfNotEmpty();
 
-        size--;
         head = head.next;
+        size--;
     }
 
     @Override
@@ -97,8 +97,8 @@ public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
             current = next;
             next = next.next;
         }
-        size--;
         current.next = null;
+        size--;
     }
 
     @Override
