@@ -1,8 +1,11 @@
 package com.bgasparotto.datastructures.datastructure.list;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.bgasparotto.datastructures.model.SampleType;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -132,6 +135,19 @@ public abstract class AbstractSimpleLinkedListTest<T extends SimpleLinkedList<Sa
         assertThat(list.size()).isEqualTo(2);
         assertThat(list.head()).isEqualTo(john);
         assertThat(list.tail()).isEqualTo(sam);
+    }
+
+    @Test
+    public void shouldClearTheList() {
+        list.add(john);
+        list.add(mary);
+        list.add(sam);
+
+        list.clear();
+
+        assertThat(list.size()).isEqualTo(0);
+        assertThatThrownBy(() -> list.head()).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> list.tail()).isInstanceOf(NoSuchElementException.class);
     }
 
     @Test

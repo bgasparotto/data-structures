@@ -24,6 +24,8 @@ public interface SimpleLinkedList<E> {
 
     void delete(int position);
 
+    void clear();
+
     int size();
 
     boolean isEmpty();

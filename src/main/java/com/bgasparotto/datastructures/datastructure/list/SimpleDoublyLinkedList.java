@@ -98,22 +98,26 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
     @Override
     public void deleteHead() {
         checkIfNotEmpty();
+        if (size == 1) {
+            clear();
+            return;
+        }
 
         head = head.next;
-        if (head != null) {
-            head.previous = null;
-        }
+        head.previous = null;
         size--;
     }
 
     @Override
     public void deleteTail() {
         checkIfNotEmpty();
+        if (size == 1) {
+            clear();
+            return;
+        }
 
         tail = tail.previous;
-        if (tail != null) {
-            tail.next = null;
-        }
+        tail.next = null;
         size--;
     }
 
@@ -136,6 +140,13 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
         previous.next = next;
         next.previous = previous;
         size--;
+    }
+
+    @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     @Override

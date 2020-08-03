@@ -121,6 +121,12 @@ public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
     }
 
     @Override
+    public void clear() {
+        head = null;
+        size = 0;
+    }
+
+    @Override
     public int size() {
         return size;
     }
