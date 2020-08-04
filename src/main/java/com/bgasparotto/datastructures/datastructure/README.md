@@ -91,6 +91,11 @@ Time complexity is ***O(n)***:
 - The last node is called *tail* always point to `null`, because nothing comes after it;
 - The list has only to store the reference of the first node (head);
 
+> *Circular Linked List*
+>
+> It's a variation of Singly Linked List, where the last node points to the head node, so you can
+> transverse the whole list starting at any point.
+
 ### Insertion O(1)
 You only insert elements at the front of the list, otherwise you would need to transverse all nodes
 until you get to the last node.
