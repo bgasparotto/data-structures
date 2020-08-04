@@ -77,6 +77,19 @@ public abstract class AbstractSimpleLinkedListTest<T extends SimpleLinkedList<Sa
     }
 
     @Test
+    public void shouldAddElementBeforeTheOtherElementSpecified() {
+        list.add(john);
+        list.add(mary);
+
+        list.addBefore(sam, mary);
+
+        assertThat(list.head()).isEqualTo(john);
+        assertThat(list.get(1)).isEqualTo(sam);
+        assertThat(list.tail()).isEqualTo(mary);
+        assertThat(list.size()).isEqualTo(3);
+    }
+
+    @Test
     public void shouldSetElementAtPositionByReplacingTheOldElement() {
         list.add(john, 0);
         list.add(mary, 1);

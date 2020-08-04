@@ -10,6 +10,8 @@ public interface SimpleLinkedList<E> {
 
     void add(E element, int position);
 
+    void addBefore(E element, E before);
+
     void set(E element, int position);
 
     E head();

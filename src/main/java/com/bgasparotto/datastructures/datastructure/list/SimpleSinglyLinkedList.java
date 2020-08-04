@@ -1,6 +1,7 @@
 package com.bgasparotto.datastructures.datastructure.list;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
 
@@ -44,6 +45,29 @@ public class SimpleSinglyLinkedList<E> implements SimpleLinkedList<E> {
         Node<E> previous = find(position - 1);
         previous.next = new Node<>(element, previous.next);
         size++;
+    }
+
+    @Override
+    public void addBefore(E element, E before) {
+        checkIfNotEmpty();
+
+        if (Objects.equals(element, head.element)) {
+            addHead(element);
+            return;
+        }
+
+        Node<E> previous = head;
+        Node<E> current = head.next;
+        while (current != null) {
+            if (Objects.equals(before, current.element)) {
+                previous.next = new Node<>(element, current);
+                size++;
+                return;
+            }
+            previous = current;
+            current = current.next;
+        }
+        throw new NoSuchElementException("No such element: " + element);
     }
 
     @Override

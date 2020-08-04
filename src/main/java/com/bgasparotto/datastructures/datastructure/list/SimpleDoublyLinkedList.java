@@ -1,6 +1,8 @@
 package com.bgasparotto.datastructures.datastructure.list;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
+import javax.lang.model.element.Element;
 
 public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
 
@@ -58,6 +60,20 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
         }
 
         Node<E> current = find(position);
+        Node<E> previous = current.previous;
+        Node<E> newNode = new Node<>(previous, element, current);
+
+        current.previous = newNode;
+        previous.next = newNode;
+
+        size++;
+    }
+
+    @Override
+    public void addBefore(E element, E before) {
+        checkIfNotEmpty();
+
+        Node<E> current = find(before);
         Node<E> previous = current.previous;
         Node<E> newNode = new Node<>(previous, element, current);
 
@@ -187,6 +203,17 @@ public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
             node = node.previous;
         }
         return node;
+    }
+
+    private Node<E> find(E element) {
+        Node<E> node = head;
+        while (node != null) {
+            if (Objects.equals(element, node.element)) {
+                return node;
+            }
+            node = node.next;
+        }
+        throw new NoSuchElementException("No such element: " + element);
     }
 
     private void checkIfNotEmpty() {
