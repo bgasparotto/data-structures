@@ -10,9 +10,13 @@ public class SimpleArrayStack<E> implements SimpleStack<E> {
     private E[] elements;
     private int topIndex;
 
-    @SuppressWarnings("unchecked")
     public SimpleArrayStack() {
-        elements = (E[]) new Object[INITIAL_CAPACITY];
+        this(INITIAL_CAPACITY);
+    }
+
+    @SuppressWarnings("unchecked")
+    public SimpleArrayStack(int initialCapacity) {
+        elements = (E[]) new Object[initialCapacity];
     }
 
     @Override
