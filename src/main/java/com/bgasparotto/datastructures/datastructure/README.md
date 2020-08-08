@@ -78,13 +78,13 @@ Time complexity is ***O(n)***:
   you a head start by providing a skeletal implementation. Read the javadoc of both class to decide
   which one to use.
   
-# Vector
+## Vector
 - Thread-safe array list, also backed by an array.
 - Since its methods are synchronised, there is a performance hit;
 - It was introduced at Java 1.0, before the popular ArrayList which was only introduced at Java 1.2;
 - If you don't need synchronisation possibly due to using mostly read operations, prefer ArrayList;
 
-# Singly Linked Lists
+## Singly Linked Lists
 - The items are called *nodes*;
 - The first node is called *head*, as in head of the list;
 - Every node, besides carrying its data, carries a reference (link) to the next node;
@@ -96,41 +96,64 @@ Time complexity is ***O(n)***:
 > It's a variation of Singly Linked List, where the last node points to the head node, so you can
 > transverse the whole list starting at any point.
 
-### Insertion O(1)
+#### Insertion O(1)
 You only insert elements at the front of the list, otherwise you would need to transverse all nodes
 until you get to the last node.
 1. Create the new node;
 2. Assign the current head node as the link of the new node;
 3. Assign the new node to the head of the list;
 
-### Deletion O(1)
+#### Deletion O(1)
 You also want to delete from the front of the list, so you don't have to transverse all nodes
 1. Obtain the head node;
 2. Assign the *next* field of the head node to the List's head node;
 
-# Doubly Linked Lists
+## Doubly Linked Lists
 - In spite of having a **head** node reference, it also has a **tail**;
 - every node in the list has a link to the *next* and *previous* node;
 - Operations on either head or tail nodes are O(1);
 
-### Insertion at head O(1)
+#### Insertion at head O(1)
 1. Create the new node;
 2. Assign the current head node as the next of the new node;
 3. Assign the previous field of the current head node as the new node;
 4. Assign the new node to the head of the list;
 
-### Insertion at tail O(1)
+#### Insertion at tail O(1)
 1. Create the new node;
 2. Assign the current tail node as the previous node of the new node;
 3. Assign the next field of the current tail node as the new node;
 4. Assign the new node to the tail of the list;
 
-### Deletion from head O(1)
+#### Deletion from head O(1)
 1. Obtain the head node;
 2. Assign the *next* field of the head node to the List's head node;
 3. Set the *previous* field of the new head node to `null`;
 
-### Deletion from tail O(1)
+#### Deletion from tail O(1)
 1. Obtain the tail node;
 2. Assign the *previous* field of the tail node to the List's tail node;
 3. Set the *next* field of the new tail node to `null`;
+
+# Stacks
+- It's an abstract data type;
+- LIFO: Last In, First Out
+- Standard operations are:
+  - **Push**: adds an item to the top of the stack;
+  - **Pop**: removes the top item of the stack;
+  - **Peek**: gets the top item of the stack without popping it
+- A *linked list* is the ideal backing data structure for a stack, however, it is possible to 
+implement it with any data structure;
+- An *array* would be a good choice **if**:
+  - You know the maximum number of items the stack will hold;
+  - Memory is tight.
+- A stack is the perfect data structure for using with a method call stack;
+
+### Stack Operation Costs
+```
+| Operation |   Linked List   |        Array List        |
+|-----------|-----------------|--------------------------|
+| Push      | O(1)            | O(1) or O(n) with resize |
+| Pop       | O(1)            | O(1)                     |
+| Peek      | O(1)            | O(1)                     |
+```
