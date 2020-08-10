@@ -1,23 +1,25 @@
-package com.bgasparotto.datastructures.datastructure;
+package com.bgasparotto.datastructures.datastructure.stack;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.EmptyStackException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.bgasparotto.datastructures.datastructure.stack.SimpleArrayStack;
-import java.util.EmptyStackException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+abstract public class AbstractSimpleStackTest<T extends SimpleStack<String>> {
 
-public class SimpleArrayStackTest {
-
-    private SimpleArrayStack<String> stack;
+    private T stack;
     private final String rick = "Rick";
     private final String james = "James";
     private final String lucy = "Lucy";
 
+    protected abstract T createInstance();
+
     @BeforeEach
     public void setUp() {
-        stack = new SimpleArrayStack<>();
+        stack = createInstance();
     }
 
     @Test
