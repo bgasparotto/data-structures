@@ -9,6 +9,10 @@ public class SimpleLinkedListStack<E> implements SimpleStack<E> {
 
     @Override
     public void push(E element) {
+        addHead(element);
+    }
+
+    private void addHead(E element) {
         head = new Node<>(element, head);
         size++;
     }
@@ -16,7 +20,7 @@ public class SimpleLinkedListStack<E> implements SimpleStack<E> {
     @Override
     public E pop() {
         throwExceptionIfEmpty();
-        return popElement();
+        return popHead();
     }
 
     private void throwExceptionIfEmpty() {
@@ -25,10 +29,10 @@ public class SimpleLinkedListStack<E> implements SimpleStack<E> {
         }
     }
 
-    private E popElement() {
-        E topElement = peekElement();
+    private E popHead() {
+        E headElement = peekHead();
         removeHead();
-        return topElement;
+        return headElement;
     }
 
     private void removeHead() {
@@ -39,10 +43,10 @@ public class SimpleLinkedListStack<E> implements SimpleStack<E> {
     @Override
     public E peek() {
         throwExceptionIfEmpty();
-        return peekElement();
+        return peekHead();
     }
 
-    private E peekElement() {
+    private E peekHead() {
         return head.element;
     }
 
