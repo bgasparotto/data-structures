@@ -27,29 +27,36 @@ public class PalindromeEvaluatorTest {
     @Test
     public void shouldReturnTrueWhenInputIsPalindrome() {
         assertThat(palindromeEvaluator.isPalindrome("aa")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("aba")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("abba")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("aabbaa")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("112211")).isTrue();
     }
 
     @Test
     public void shouldReturnTrueWhenInputIsPalindromeButHasDifferentCase() {
         assertThat(palindromeEvaluator.isPalindrome("aa")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("aA")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("aBA")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("BB")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("aBBa")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("AaBbAa")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("Aa3Bb3Aa")).isTrue();
     }
 
     @Test
     public void shouldReturnTrueWhenInputIsPalindromeButHasSpaces() {
         assertThat(palindromeEvaluator.isPalindrome(" aa")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome(" a ba")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("a bba")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("aa bba a")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("1aa bba a 1 ")).isTrue();
     }
 
     @Test
     public void shouldReturnTrueWhenInputIsPalindromeButHasSpacesAndPunctuations() {
         assertThat(palindromeEvaluator.isPalindrome(" a,a")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome(" a,.ba")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("a;b-ba.")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("? .aab....baa. !")).isTrue();
     }
@@ -57,7 +64,10 @@ public class PalindromeEvaluatorTest {
     @Test
     public void shouldReturnTrueWhenInputIsPalindromeButHasSpacesAndPunctuationsAndDifferentCase() {
         assertThat(palindromeEvaluator.isPalindrome(" a,A")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome(" a,bA")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("a;B-bA.")).isTrue();
         assertThat(palindromeEvaluator.isPalindrome("? .AAb....Baa. !")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("? 23 .AAb....Baa. 32  !")).isTrue();
+        assertThat(palindromeEvaluator.isPalindrome("? 23 .AAb..BBB..Baa. 32  !")).isTrue();
     }
 }

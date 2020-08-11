@@ -4,47 +4,37 @@ import com.bgasparotto.datastructures.datastructure.stack.SimpleLinkedListStack;
 import com.bgasparotto.datastructures.datastructure.stack.SimpleStack;
 
 public class PalindromeEvaluator {
-    private static final String LOWER_CASE_ALPHANUMERIC_ONLY_REGEX = "[^a-z0-9]";
+    private static final String LOWER_CASE_ALPHANUMERIC_ONLY_REGEX = "[^a-zA-Z0-9]";
 
     public boolean isPalindrome(String input) {
-        if (input == null || input.isBlank()) {
+        if (isInvalid(input)) {
             return false;
         }
 
         String cleanInput = lowerCaseAlphanumericOnly(input);
-        if (hasOddNumberOfChars(cleanInput)) {
-            return false;
-        }
-
         return inputIsPalindrome(cleanInput);
     }
 
-    private boolean hasOddNumberOfChars(String input) {
-        return input.length() % 2 != 0;
-    }
-
-    private boolean inputIsPalindrome(String input) {
-        int middle = input.length() / 2;
-        SimpleStack<Character> stack = new SimpleLinkedListStack<>();
-
-        char[] leftHalf = input.substring(0, middle).toCharArray();
-        for (char c : leftHalf) {
-            stack.push(c);
-        }
-
-        char[] rightHalf = input.substring(middle).toCharArray();
-        for (char c : rightHalf) {
-            if (c != stack.pop()) {
-                return false;
-            }
-        }
-
-        return true;
+    private boolean isInvalid(String input) {
+        return input == null || input.isBlank();
     }
 
     private String lowerCaseAlphanumericOnly(String input) {
-        return input
-                .toLowerCase()
-                .replaceAll(LOWER_CASE_ALPHANUMERIC_ONLY_REGEX, "");
+        return input.replaceAll(LOWER_CASE_ALPHANUMERIC_ONLY_REGEX, "");
+    }
+
+    private boolean inputIsPalindrome(String input) {
+        SimpleStack<Character> stack = new SimpleLinkedListStack<>();
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        StringBuilder reverseStringBuilder = new StringBuilder(input.length());
+        for (int i = 0; i < input.length(); i++) {
+            reverseStringBuilder.append(stack.pop());
+        }
+
+        String reverseString = reverseStringBuilder.toString();
+        return input.equalsIgnoreCase(reverseString);
     }
 }
