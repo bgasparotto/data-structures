@@ -4,8 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class PalindromeEvaluatorTest {
-    private final PalindromeEvaluator palindromeEvaluator = new PalindromeEvaluator();
+public abstract class AbstractPalindromeEvaluatorTest {
+    private final PalindromeEvaluator palindromeEvaluator;
+
+    public AbstractPalindromeEvaluatorTest(PalindromeEvaluator palindromeEvaluator) {
+        this.palindromeEvaluator = palindromeEvaluator;
+    }
 
     @Test
     public void shouldReturnFalseForNullInput() {
