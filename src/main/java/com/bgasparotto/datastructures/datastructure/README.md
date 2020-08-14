@@ -137,7 +137,7 @@ You also want to delete from the front of the list, so you don't have to transve
 
 # Stacks
 - It's an abstract data type;
-- LIFO: Last In, First Out
+- LIFO: Last In, First Out;
 - Standard operations are:
   - **Push**: adds an item to the top of the stack;
   - **Pop**: removes the top item of the stack;
@@ -156,4 +156,25 @@ implement it with any data structure;
 | Push      | O(1)            | O(1) or O(n) with resize |
 | Pop       | O(1)            | O(1)                     |
 | Peek      | O(1)            | O(1)                     |
+```
+
+# Queues
+- It's an abstract data type;
+- FIFO: First In, First Out;
+- Standard operations are:
+  - **Enqueue (Add)**: adds an item to the end of the queue;
+  - **Dequeue (Remove)**: removes the item at the front of the queue;
+  - **Peek**: gets the item at the front of the queue, without removing it;
+- Two popular data structures for implementing queues are *arrays* and *linked lists*
+- *Linked list* implementations provide all operations with O(1);
+- *Array* implementations, similarly to stack array implementations, provide the operations with 
+  O(1) if no resize is needed, O(n) otherwise.
+
+### Queue Operation Costs
+```
+|     Operation    |   Linked List   |        Array List        |
+|------------------|-----------------|--------------------------|
+| Enqueue (Add)    | O(1)            | O(1) or O(n) with resize |
+| Dequeue (Remove) | O(1)            | O(1)                     |
+| Peek             | O(1)            | O(1)                     |
 ```
