@@ -2,7 +2,7 @@ package com.bgasparotto.datastructures.datastructure.queue;
 
 import java.util.NoSuchElementException;
 
-public class SimpleLinearArrayQueue<E> {
+public class SimpleLinearArrayQueue<E> implements SimpleQueue<E> {
     private static final int INITIAL_CAPACITY = 10;
     private static final int CAPACITY_INCREMENT = 100;
 
@@ -19,6 +19,7 @@ public class SimpleLinearArrayQueue<E> {
         this.elements = (E[]) new Object[initialCapacity];
     }
 
+    @Override
     public void enqueue(E element) {
         resizeIfFull();
         enqueueAtBack(element);
@@ -36,7 +37,8 @@ public class SimpleLinearArrayQueue<E> {
     }
 
     private void enqueueAtBack(E element) {
-        elements[backIndex++] = element;
+        elements[backIndex] = element;
+        backIndex++;
     }
 
     @SuppressWarnings("unchecked")
@@ -48,6 +50,7 @@ public class SimpleLinearArrayQueue<E> {
         elements = newStorageArray;
     }
 
+    @Override
     public E dequeue() {
         throwExceptionIfEmpty();
         return dequeueFromFront();
@@ -78,6 +81,7 @@ public class SimpleLinearArrayQueue<E> {
         backIndex = 0;
     }
 
+    @Override
     public E peek() {
         throwExceptionIfEmpty();
         return peekAtFront();
@@ -87,10 +91,12 @@ public class SimpleLinearArrayQueue<E> {
         return elements[frontIndex];
     }
 
+    @Override
     public int size() {
         return backIndex - frontIndex;
     }
 
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }
