@@ -2,7 +2,6 @@ package com.bgasparotto.datastructures.datastructure.list;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import javax.lang.model.element.Element;
 
 public class SimpleDoublyLinkedList<E> implements SimpleLinkedList<E> {
 
