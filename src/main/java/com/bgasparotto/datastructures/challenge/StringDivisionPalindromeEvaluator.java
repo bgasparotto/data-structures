@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.datastructure.stack.challenge;
+package com.bgasparotto.datastructures.challenge;
 
 import com.bgasparotto.datastructures.datastructure.stack.SimpleLinkedListStack;
 import com.bgasparotto.datastructures.datastructure.stack.SimpleStack;

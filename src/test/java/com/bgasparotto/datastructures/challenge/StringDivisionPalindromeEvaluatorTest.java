@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.datastructure.stack.challenge;
+package com.bgasparotto.datastructures.challenge;
 
 public class StringDivisionPalindromeEvaluatorTest extends AbstractPalindromeEvaluatorTest {
 
