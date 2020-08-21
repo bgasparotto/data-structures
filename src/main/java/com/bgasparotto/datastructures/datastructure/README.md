@@ -178,3 +178,34 @@ implement it with any data structure;
 | Dequeue (Remove) | O(1)            | O(1)                     |
 | Peek             | O(1)            | O(1)                     |
 ```
+
+# Hash tables (Maps, Dictionaries)
+- It's an abstract data type;
+- Consists of key/value pairs;
+  - Keys could be of any type
+  - Values could also be of any type and don't have to match the key types 
+- Optimised for retrieval when you know the key
+- A common data structure for backing a hashtable is an array, but any structure could be used.
+
+### Hashing
+- Keys of any data type are hashed to int by using a hash function;
+- In Java, the hash function is `Object.hashCode()`;
+- A *collision* is when more than one value has the same hashed value.
+
+### Load Factor
+- Tells us how full a hash table is: `f = size / capacity`
+- It is used to decide when to resize the array backing the hash table;
+- Low load factors leave lots of empty space, whereas high load factors increase the likelihood of 
+  collisions;
+- Plays a role in determining the time complexity for retrieval.
+
+### Operations
+#### Add (Put)
+1. Provide a key/value pair;
+2. Use the hash function to hash the key into an int value;
+3. Store the value at the key hashed value, which is the index of the array.
+
+#### Retrieve (Get)
+1. Provide the key;
+2. Use the same hash function to hash the key into an int value;
+3. Retrieve the value stored at the hashed key value.
