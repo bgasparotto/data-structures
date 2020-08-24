@@ -17,28 +17,28 @@ public class CollisionUnsupportedHashTable<K, V> {
 
     public boolean put(K key, V value) {
         int hashedKey = hashKey(key);
-        return putIfNoCollision(value, hashedKey);
+        return putIfNoCollision(hashedKey, value);
     }
 
     private int hashKey(K key) {
         return key.hashCode() % hashTable.length;
     }
 
-    private boolean putIfNoCollision(V value, int hashedKey) {
-        if (hasHasCollided(hashedKey)) {
+    private boolean putIfNoCollision(int hashedKey, V value) {
+        if (hasCollided(hashedKey)) {
             return false;
         }
-        put(value, hashedKey);
+        put(hashedKey, value);
         return true;
     }
 
-    private void put(V value, int hashedKey) {
-        hashTable[hashedKey] = value;
-        size++;
+    private boolean hasCollided(int hashedKey) {
+        return hashTable[hashedKey] != null;
     }
 
-    private boolean hasHasCollided(int hashedKey) {
-        return hashTable[hashedKey] != null;
+    private void put(int hashedKey, V value) {
+        hashTable[hashedKey] = value;
+        size++;
     }
 
     public V get(K key) {
