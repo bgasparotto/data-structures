@@ -179,7 +179,7 @@ implement it with any data structure;
 | Peek             | O(1)            | O(1)                     |
 ```
 
-# Hash tables (Maps, Dictionaries)
+# Hashtables (Maps, Dictionaries)
 - It's an abstract data type;
 - Consists of key/value pairs;
   - Keys could be of any type
@@ -199,7 +199,18 @@ implement it with any data structure;
   collisions;
 - Plays a role in determining the time complexity for retrieval.
 
-### Operations
+### Collision Handling Strategies
+A collision is when two or more keys hash into the same int value. In order to store these values,
+these collisions can be handled with **Linear Probing**, which is an **Open Addressing** strategy,
+where we look for the next available position if the desired position has already been taken.
+
+#### Collision Handling with Linear Probing
+- If the hash position has already been taken, we keep adding `1` to the hash value until we find an
+  available position or discover the hash table is full.
+- Say we had to add `1` three times to the hash, we could say we had to use *three probes*.
+- The lower the number of probes, the better.
+
+### Hashtable Operations
 #### Add (Put)
 1. Provide a key/value pair;
 2. Use the hash function to hash the key into an int value;
