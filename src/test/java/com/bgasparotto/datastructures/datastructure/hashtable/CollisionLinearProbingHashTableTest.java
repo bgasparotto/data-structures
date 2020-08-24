@@ -78,12 +78,37 @@ public class CollisionLinearProbingHashTableTest {
     }
 
     @Test
+    public void shouldBeAbleToGetCollidingKeysAfterRemoval() {
+        hashTable.put(1, rick);
+        hashTable.put(31, james);
+        hashTable.put(51, lucy);
+
+        assertThat(hashTable.remove(31)).isEqualTo(james);
+
+        assertThat(hashTable.get(31)).isNull();
+        assertThat(hashTable.get(51)).isEqualTo(lucy);
+    }
+
+    @Test
     public void shouldReturnNullWhenRemovingNotExistentKey() {
         assertThat(hashTable.remove(1)).isNull();
     }
 
     @Test
     public void shouldReturnSizeZeroWhenHashTableHasNoElements() {
+        assertThat(hashTable.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldClearTheHashTable() {
+        hashTable.put(1, rick);
+        hashTable.put(5, james);
+
+        hashTable.clear();
+
+        assertThat(hashTable.get(1)).isNull();
+        assertThat(hashTable.get(5)).isNull();
+        assertThat(hashTable.isEmpty()).isTrue();
         assertThat(hashTable.size()).isEqualTo(0);
     }
 

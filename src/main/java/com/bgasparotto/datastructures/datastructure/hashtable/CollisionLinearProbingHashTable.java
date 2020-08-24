@@ -6,7 +6,7 @@ import java.util.Optional;
 public class CollisionLinearProbingHashTable<K, V> {
 
     private static final int INITIAL_CAPACITY = 10;
-    private final Entry<K, V>[] hashTable;
+    private Entry<K, V>[] hashTable;
     private int size;
 
     public CollisionLinearProbingHashTable() {
@@ -121,9 +121,25 @@ public class CollisionLinearProbingHashTable<K, V> {
     private V removeAtIndex(int index) {
         V value = hashTable[index].value;
         hashTable[index] = null;
-        size--;
+        rehash();
 
         return value;
+    }
+
+    private void rehash() {
+        Entry<K, V>[] oldHashTable = hashTable;
+        clear();
+        for (Entry<K, V> entry : oldHashTable) {
+            if (entry != null) {
+                put(entry.key, entry.value);
+            }
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void clear() {
+        hashTable = (Entry<K, V>[]) new Entry[hashTable.length];
+        size = 0;
     }
 
     public int size() {
