@@ -19,32 +19,39 @@ public class CollisionLinearProbingHashTable<K, V> {
     }
 
     public boolean put(K key, V value) {
+        return findAvailableHashedKey(key)
+            .map(hashedKey -> putAtIndex(hashedKey, key, value))
+            .orElse(false);
+    }
+
+    public Optional<Integer> findAvailableHashedKey(K key) {
         int hashedKey = hashKey(key);
-        return putIfNotFull(hashedKey, key, value);
+        if (hasNotCollided(hashedKey)) {
+            return Optional.of(hashedKey);
+        }
+        return findAvailableHashedKeyByProbing(key);
     }
 
     private int hashKey(K key) {
         return key.hashCode() % hashTable.length;
     }
 
-    private boolean putIfNotFull(int hashedKey, K key, V value) {
-        if (hasCollided(hashedKey)) {
-            hashedKey = linearlyProbe(hashedKey);
-        }
-        return putIfNoCollision(hashedKey, key, value);
+    private boolean hasNotCollided(int hashedKey) {
+        return hashTable[hashedKey] == null;
     }
 
-    private int linearlyProbe(int hashedKey) {
-        int candidateHashedKey = wrapOrIncrement(hashedKey);
-        while (hasCollided(candidateHashedKey) && candidateHashedKey != hashedKey) {
-            candidateHashedKey = probeHashedKey(candidateHashedKey);
+    private Optional<Integer> findAvailableHashedKeyByProbing(K key) {
+        int hashedKey = hashKey(key);
+        int probingHashedKey = wrapOrIncrement(hashedKey);
+
+        while (probingHashedKey != hashedKey) {
+            if (hasNotCollided(probingHashedKey)) {
+                return Optional.of(probingHashedKey);
+            }
+            probingHashedKey = probeHashedKey(probingHashedKey);
         }
 
-        return candidateHashedKey;
-    }
-
-    private int probeHashedKey(int candidateHashedKey) {
-        return (candidateHashedKey + 1) % hashTable.length;
+        return Optional.empty();
     }
 
     private int wrapOrIncrement(int hashedKey) {
@@ -54,55 +61,69 @@ public class CollisionLinearProbingHashTable<K, V> {
         return hashedKey + 1;
     }
 
-    private boolean putIfNoCollision(int hashedKey, K key, V value) {
-        if (hasCollided(hashedKey)) {
-            return false;
-        }
-        put(hashedKey, key, value);
+    private int probeHashedKey(int candidateHashedKey) {
+        return (candidateHashedKey + 1) % hashTable.length;
+    }
+
+    private boolean putAtIndex(int index, K key, V value) {
+        hashTable[index] = new Entry<>(key, value);
+        size++;
         return true;
     }
 
-    private boolean hasCollided(int hashedKey) {
-        return hashTable[hashedKey] != null;
-    }
-
-    private void put(int hashedKey, K key, V value) {
-        hashTable[hashedKey] = new Entry<>(key, value);
-        size++;
-    }
-
     public V get(K key) {
-        int hashedKey = hashKey(key);
-        if (hashedKeyIndexHasMatchingKey(hashedKey, key)) {
-            return get(hashedKey);
-        }
-
-        hashedKey = findByLinearProbing(hashedKey, key);
-        return get(hashedKey);
-    }
-
-    private boolean hashedKeyIndexHasMatchingKey(int hashedKey, K key) {
-        Entry<K, V> entry = hashTable[hashedKey];
-        if (entry == null) {
-            return false;
-        }
-        return Objects.equals(key, entry.key);
-    }
-
-    private int findByLinearProbing(int hashedKey, K key) {
-        int candidateHashedKey = wrapOrIncrement(hashedKey);
-        while (!hashedKeyIndexHasMatchingKey(candidateHashedKey, key) && candidateHashedKey != hashedKey) {
-            candidateHashedKey = probeHashedKey(candidateHashedKey);
-        }
-
-        return candidateHashedKey;
-    }
-
-    private V get(int hashedKey) {
-        Entry<K, V> entry = hashTable[hashedKey];
-        return Optional.ofNullable(entry)
-            .map(e -> e.value)
+        return findHashedKey(key)
+            .map(indexKey -> hashTable[indexKey].value)
             .orElse(null);
+    }
+
+    private Optional<Integer> findHashedKey(K key) {
+        int hashedKey = hashKey(key);
+        if (indexHasMatchingKey(hashedKey, key)) {
+            return Optional.of(hashedKey);
+        }
+        return findHashedKeyByLinearProbing(key);
+    }
+
+    private boolean indexHasMatchingKey(int hashedKey, K key) {
+        return Optional.ofNullable(hashTable[hashedKey])
+            .map(entry -> Objects.equals(entry.key, key))
+            .orElse(false);
+    }
+
+    private Optional<Integer> findHashedKeyByLinearProbing(K key) {
+        int hashedKey = hashKey(key);
+        int probingHashedKey = wrapOrIncrement(hashedKey);
+
+        while (probingHashedKey != hashedKey) {
+            if (indexHasMatchingKey(probingHashedKey, key)) {
+                return Optional.of(probingHashedKey);
+            }
+            if (outOfLinearProbingRange(probingHashedKey)) {
+                break;
+            }
+            probingHashedKey = probeHashedKey(probingHashedKey);
+        }
+
+        return Optional.empty();
+    }
+
+    private boolean outOfLinearProbingRange(int probingHashedKey) {
+        return hashTable[probingHashedKey] == null;
+    }
+
+    public V remove(K key) {
+        return findHashedKey(key)
+            .map(this::removeAtIndex)
+            .orElse(null);
+    }
+
+    private V removeAtIndex(int index) {
+        V value = hashTable[index].value;
+        hashTable[index] = null;
+        size--;
+
+        return value;
     }
 
     public int size() {
