@@ -201,8 +201,11 @@ implement it with any data structure;
 
 ### Collision Handling Strategies
 A collision is when two or more keys hash into the same int value. In order to store these values,
-these collisions can be handled with **Linear Probing**, which is an **Open Addressing** strategy,
-where we look for the next available position if the desired position has already been taken.
+these collisions can be handled with:
+  1. **Linear Probing**, which is an *Open Addressing* strategy, where we look for the next 
+     available position if the desired position has already been taken.
+  2. **Chaining**, where each of the underlying array's position contains a *LinkedList*, so when
+     a collision happens, the new element is simply added to the LinkedList at the hashed index.
 
 #### Collision Handling with Linear Probing
 - If the hash position has already been taken, we keep adding `1` to the hash value until we find an
@@ -210,13 +213,37 @@ where we look for the next available position if the desired position has alread
 - Say we had to add `1` three times to the hash, we could say we had to use *three probes*.
 - The lower the number of probes, the better.
 
+#### Chaining
+- Simpler than linear probing;
+- Each linked list at a given index acts similarly to a *bucket*, that keeps elements of the same
+  hash.
+
 ### Hashtable Operations
-#### Add (Put)
+#### Put
 1. Provide a key/value pair;
 2. Use the hash function to hash the key into an int value;
-3. Store the value at the key hashed value, which is the index of the array.
+3. If a collision happens, use an underlying algorithm to find a new available key;
+4. Store the value at the key hashed value, which is the index of the array.
 
-#### Retrieve (Get)
+#### Get
 1. Provide the key;
 2. Use the same hash function to hash the key into an int value;
-3. Retrieve the value stored at the hashed key value.
+3. Lookup for the desired value by comparing the not hashed key starting at the hashed key index.
+4. Retrieve the value stored at the hashed key value.
+
+#### Remove
+1. Provide the key;
+2. Use the same hash function to hash the key into an int value;
+3. Set the value stored at the hashed key as null;
+4. Rehash the element data storage if linear probing is being used.
+
+### Hashtable Operation Costs
+The table below demonstrates the time complexity of the Hashtable operations, when no hash key
+collision happens and when they happen and are handled by a specific algorithm.
+```
+| Operation | No Collision | Linear Probing |    Chaining     |
+|-----------|--------------|----------------|-----------------|
+| Put       | O(1)         | O(n)           | O(1+n/k) - O(n) |
+| Get       | O(1)         | O(n)           | O(1+n/k) - O(n) |
+| Remove    | O(n)         | O(n)           | O(1+n/k) - O(n) |
+```
