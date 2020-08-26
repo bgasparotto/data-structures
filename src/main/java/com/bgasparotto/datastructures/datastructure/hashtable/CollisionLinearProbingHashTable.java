@@ -3,7 +3,7 @@ package com.bgasparotto.datastructures.datastructure.hashtable;
 import java.util.Objects;
 import java.util.Optional;
 
-public class CollisionLinearProbingHashTable<K, V> {
+public class CollisionLinearProbingHashTable<K, V> implements CollisionSupportedHashTable<K, V> {
 
     private static final int INITIAL_CAPACITY = 10;
     private Entry<K, V>[] hashTable;
@@ -18,13 +18,14 @@ public class CollisionLinearProbingHashTable<K, V> {
         hashTable = (Entry<K, V>[]) new Entry[initialCapacity];
     }
 
+    @Override
     public boolean put(K key, V value) {
         return findAvailableHashedKey(key)
             .map(hashedKey -> putAtIndex(hashedKey, key, value))
             .orElse(false);
     }
 
-    public Optional<Integer> findAvailableHashedKey(K key) {
+    private Optional<Integer> findAvailableHashedKey(K key) {
         int hashedKey = hashKey(key);
         if (hasNotCollided(hashedKey)) {
             return Optional.of(hashedKey);
@@ -71,6 +72,7 @@ public class CollisionLinearProbingHashTable<K, V> {
         return true;
     }
 
+    @Override
     public V get(K key) {
         return findHashedKey(key)
             .map(indexKey -> hashTable[indexKey].value)
@@ -112,6 +114,7 @@ public class CollisionLinearProbingHashTable<K, V> {
         return hashTable[probingHashedKey] == null;
     }
 
+    @Override
     public V remove(K key) {
         return findHashedKey(key)
             .map(this::removeAtIndex)
@@ -136,16 +139,19 @@ public class CollisionLinearProbingHashTable<K, V> {
         }
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public void clear() {
         hashTable = (Entry<K, V>[]) new Entry[hashTable.length];
         size = 0;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
