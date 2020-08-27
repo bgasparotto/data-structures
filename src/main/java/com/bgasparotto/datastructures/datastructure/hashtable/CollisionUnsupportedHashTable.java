@@ -21,7 +21,7 @@ public class CollisionUnsupportedHashTable<K, V> {
     }
 
     private int hashKey(K key) {
-        return key.hashCode() % hashTable.length;
+        return Math.abs(key.hashCode()) % hashTable.length;
     }
 
     private boolean putIfNoCollision(int hashedKey, V value) {

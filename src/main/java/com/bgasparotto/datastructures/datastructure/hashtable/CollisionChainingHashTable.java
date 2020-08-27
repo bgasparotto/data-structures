@@ -31,7 +31,7 @@ public class CollisionChainingHashTable<K, V> implements CollisionSupportedHashT
     }
 
     private int hashKey(K key) {
-        return key.hashCode() % hashTable.length;
+        return Math.abs(key.hashCode()) % hashTable.length;
     }
 
     private Optional<SimpleLinkedList<Entry<K, V>>> findChainAtIndex(int index) {

@@ -34,7 +34,7 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
     }
 
     private int hashKey(K key) {
-        return key.hashCode() % hashTable.length;
+        return Math.abs(key.hashCode()) % hashTable.length;
     }
 
     private boolean hasNotCollided(int hashedKey) {
