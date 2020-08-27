@@ -186,6 +186,8 @@ implement it with any data structure;
   - Values could also be of any type and don't have to match the key types 
 - Optimised for retrieval when you know the key
 - A common data structure for backing a hashtable is an array, but any structure could be used.
+- The key for better performance on a hash table is to provide a good hashing algorithm, which
+  distributes the stored values as consistently as possible across the underlying storage structure.
 
 ### Hashing
 - Keys of any data type are hashed to int by using a hash function;
@@ -241,9 +243,11 @@ these collisions can be handled with:
 The table below demonstrates the time complexity of the Hashtable operations, when no hash key
 collision happens and when they happen and are handled by a specific algorithm.
 ```
-| Operation | No Collision | Linear Probing |    Chaining     |
-|-----------|--------------|----------------|-----------------|
-| Put       | O(1)         | O(n)           | O(1+n/k) - O(n) |
-| Get       | O(1)         | O(n)           | O(1+n/k) - O(n) |
-| Remove    | O(n)         | O(n)           | O(1+n/k) - O(n) |
+| Operation | No Collision | Linear Probing |   Chaining    |
+|-----------|--------------|----------------|---------------|
+| Put       | O(1)         | O(n)           | O(1+k) - O(n) |
+| Get       | O(1)         | O(n)           | O(1+k) - O(n) |
+| Remove    | O(n)         | O(n)           | O(1+k) - O(n) |
+
+k: average length of the linked lists in a chained hash table
 ```
