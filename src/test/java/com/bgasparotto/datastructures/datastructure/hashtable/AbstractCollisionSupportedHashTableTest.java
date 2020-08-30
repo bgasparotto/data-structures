@@ -1,9 +1,9 @@
 package com.bgasparotto.datastructures.datastructure.hashtable;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Since we know the hash key algorithm is = key.hashCode() % elementArray.length`, we will use Integer as keys so we

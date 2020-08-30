@@ -2,6 +2,7 @@ package com.bgasparotto.datastructures.datastructure.hashtable;
 
 import com.bgasparotto.datastructures.datastructure.list.SimpleLinkedList;
 import com.bgasparotto.datastructures.datastructure.list.SimpleSinglyLinkedList;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class CollisionChainingHashTable<K, V> implements CollisionSupportedHashT
     public boolean put(K key, V value) {
         int hashedKey = hashKey(key);
         var chain = findChainAtIndex(hashedKey)
-            .orElseGet(() -> assignChainAtIndex(hashedKey));
+                .orElseGet(() -> assignChainAtIndex(hashedKey));
 
         removeIfPresent(chain, key);
         addToChain(chain, key, value);
@@ -55,8 +56,8 @@ public class CollisionChainingHashTable<K, V> implements CollisionSupportedHashT
     public V get(K key) {
         int hashedKey = hashKey(key);
         return findChainAtIndex(hashedKey)
-            .flatMap(chain -> findInChain(chain, key))
-            .orElse(null);
+                .flatMap(chain -> findInChain(chain, key))
+                .orElse(null);
     }
 
     private Optional<V> findInChain(SimpleLinkedList<Entry<K, V>> chain, K key) {
@@ -74,8 +75,8 @@ public class CollisionChainingHashTable<K, V> implements CollisionSupportedHashT
     public V remove(K key) {
         int hashedKey = hashKey(key);
         return findChainAtIndex(hashedKey)
-            .flatMap(chain -> removeIfPresent(chain, key))
-            .orElse(null);
+                .flatMap(chain -> removeIfPresent(chain, key))
+                .orElse(null);
     }
 
     private Optional<V> removeIfPresent(SimpleLinkedList<Entry<K, V>> chain, K key) {

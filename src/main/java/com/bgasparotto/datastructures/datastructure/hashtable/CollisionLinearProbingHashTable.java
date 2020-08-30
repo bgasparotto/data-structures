@@ -21,11 +21,11 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
     @Override
     public boolean put(K key, V value) {
         findHashedKey(key)
-            .map(this::removeAtIndex);
+                .map(this::removeAtIndex);
 
         return findAvailableHashedKey(key)
-            .map(hashedKey -> putAtIndex(hashedKey, key, value))
-            .orElse(false);
+                .map(hashedKey -> putAtIndex(hashedKey, key, value))
+                .orElse(false);
     }
 
     private Optional<Integer> findAvailableHashedKey(K key) {
@@ -78,8 +78,8 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
     @Override
     public V get(K key) {
         return findHashedKey(key)
-            .map(indexKey -> hashTable[indexKey].value)
-            .orElse(null);
+                .map(indexKey -> hashTable[indexKey].value)
+                .orElse(null);
     }
 
     private Optional<Integer> findHashedKey(K key) {
@@ -92,8 +92,8 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
 
     private boolean indexHasMatchingKey(int hashedKey, K key) {
         return Optional.ofNullable(hashTable[hashedKey])
-            .map(entry -> Objects.equals(entry.key, key))
-            .orElse(false);
+                .map(entry -> Objects.equals(entry.key, key))
+                .orElse(false);
     }
 
     private Optional<Integer> findHashedKeyByLinearProbing(K key) {
@@ -120,8 +120,8 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
     @Override
     public V remove(K key) {
         return findHashedKey(key)
-            .map(this::removeAtIndex)
-            .orElse(null);
+                .map(this::removeAtIndex)
+                .orElse(null);
     }
 
     private V removeAtIndex(int index) {
