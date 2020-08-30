@@ -20,6 +20,9 @@ public class CollisionLinearProbingHashTable<K, V> implements CollisionSupported
 
     @Override
     public boolean put(K key, V value) {
+        findHashedKey(key)
+            .map(this::removeAtIndex);
+
         return findAvailableHashedKey(key)
             .map(hashedKey -> putAtIndex(hashedKey, key, value))
             .orElse(false);

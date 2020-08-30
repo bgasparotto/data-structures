@@ -37,6 +37,15 @@ public abstract class AbstractCollisionSupportedHashTableTest {
     }
 
     @Test
+    public void shouldReplaceOldElementByNewerElementWhenPutInvokedWithSameKey() {
+        assertThat(hashTable.put(1, rick)).isTrue();
+        assertThat(hashTable.put(1, james)).isTrue();
+
+        assertThat(hashTable.get(1)).isEqualTo(james);
+        assertThat(hashTable.size()).isEqualTo(1);
+    }
+
+    @Test
     public void shouldGetElementByItsKey() {
         hashTable.put(1003, lucy);
 

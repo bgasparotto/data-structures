@@ -26,6 +26,7 @@ public class CollisionChainingHashTable<K, V> implements CollisionSupportedHashT
         var chain = findChainAtIndex(hashedKey)
             .orElseGet(() -> assignChainAtIndex(hashedKey));
 
+        removeIfPresent(chain, key);
         addToChain(chain, key, value);
         return true;
     }
