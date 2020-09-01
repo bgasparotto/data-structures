@@ -224,3 +224,21 @@ reach `1`.
 - Repeat it for the right-most - 1 and so on until you sorted the left-most element.
 - Stable Counting Sort is probably the most popular choice for the internal sorting algorithm of
   radix sort, however, it works with any stable algorithm.
+  
+## Bucket Sort O(n)
+- Uses hashing.
+- It's a generalisation of counting sort, where the values are distributed based on their hash value
+- Makes assumptions about the data, like Radix and Counting Sort.
+- Performs best when the hashed values of the items being sorted are evenly distributed, so there
+  aren't many collisions.
+- In fact, O(n) can only be achieved if each bucket has only one item;
+- Insertion Sort is often used to sort the buckets, since it's fast given just a few items.
+- Stability will depend on the sort algorithm used to sort the individual buckets.
+- Not in-place as it creates the bucket data structure underneath.
+  
+### Bucket Sort Implementation
+1. *Scattering phase*: Distribute the items into buckets based on their hashed values;
+   - The values in bucket `x` must be greater than the values in bucket `x - 1` and less than the
+     values in the bucket `x + 1`. **The hash function must meet this requirement**.
+2. Sort the items in each bucket using another sort algorithm;
+3. *Gathering phase*: Merge the buckets by concatenating them.
