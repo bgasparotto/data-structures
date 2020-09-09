@@ -251,3 +251,37 @@ collision happens and when they happen and are handled by a specific algorithm.
 
 k: average length of the linked lists in a chained hash table
 ```
+
+# Trees
+- Trees could be classified as either data structures or abstract data types, since it is possible
+  to back a tree using an array. For the sake of the exercise, we will look into them as a data
+  structure.
+- Tree is a hierarchical data structure.
+
+### Tree's basic terminology:
+![Tree example](../../../../../../../images/tree_example.png)
+
+- Every **circle** in a tree is a node;
+- Nodes are connected by **edges** (arrows);
+- Each node can have *one and only one* **parent**;
+- Every tree has the special unique node **root**, which has no parents and is the starting point;
+- Each node can have *multiple* **children** nodes;
+- A **leaf** is a node with no children;
+- The **depth** of a node is the number of *edges* from the node to the root. The depth of the root
+  node is always `0`;
+- The **height** of a node is the number of *edges* on the *longest path* from the node to a leaf.
+  The height of leaf nodes is always `0`;
+- The height of a tree is the height of the root node;
+- A **level** of a tree contains all the nodes that are on the same *depth*, where `depth == level`;
+- An **ancestor** of a node is every node on the node's ascending path, including the root node;
+  
+### Tree's additional terminology:
+- Every tree consists of one or more sub-trees, from the Node of choice descending to its leaves;
+- A *singleton tree* has only one node - the root;
+- A **path** is a sequence of nodes required to go from one node to another.
+- A **root path* is the ascending sequence of how to get from a specific node to the root node;
+- You can't have cyclic paths, in other words, a path can't cross the same node more than once;
+
+### Examples of trees:
+  - The Java class model, where the root node is the `Object` class;
+  - A file system, where the root node is the `/` folder;
