@@ -285,3 +285,44 @@ k: average length of the linked lists in a chained hash table
 ### Examples of trees:
   - The Java class model, where the root node is the `Object` class;
   - A file system, where the root node is the `/` folder;
+  
+### Complete Binary Tree
+A binary tree is **complete** if every level, except the last level, has two children, and at the 
+last level all children nodes are as at left as possible:
+
+![Complete Bynary Tree example](../../../../../../../images/complete_binary_tree_example.png) 
+
+### Full Binary Tree
+A **full** binary tree is complete and has all last level nodes with both left and right child:
+
+![Full Binary Tree example](../../../../../../../images/full_binary_tree_example.png) 
+
+## Binary Search Trees (BST)
+![Binary Search Tree example](../../../../../../../images/binary_search_tree_example.png) 
+
+- In practise, we use binary search trees, which are naturally organised to do binary searches;
+- Can perform insertions, deletions and retrievals at *O(log n)*
+- Every node has 0, 1 or 2 children;
+- We refer to children nodes as left and right child;
+- The left child always has a smaller value than its parent;
+- The right child always has a larger value than its parent;
+- This means everything on the left of the root is less than the root, and everything on the right
+  is greater than the root. Because of this, we can perform binary search.
+- Handling duplicate values:
+  - You can simply don't allow them;
+  - You can choose to store them always on the left or always on the right sub-tree;
+  - You can have a counter for each node, so instead of adding a new node with the duplicate value, 
+    you increase the counter.
+- In order to discover the minimum value, you can follow the left path all the way down to the left;
+- In order to discover the maximum, follow the right path until the left;
+
+### Insertion
+- The first inserted value the root node;
+- The following navigate the tree and get inserted at a free spot, follow smaller at left and 
+  greater at right rule;
+- You *should not* sort data before inserting it into a binary tree, otherwise it will insert
+  everything at the same side, emulating a linked list.
+- In general, the left and right sub-trees should be as balanced as possible, in other words, their
+  height should not differ much.
+- Some advanced trees such as AVL and red black trees would shift sub-trees in order to rebalance
+  the trees.
