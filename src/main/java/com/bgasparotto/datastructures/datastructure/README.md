@@ -326,3 +326,24 @@ A **full** binary tree is complete and has all last level nodes with both left a
   height should not differ much.
 - Some advanced trees such as AVL and red black trees would shift sub-trees in order to rebalance
   the trees.
+
+### Traversal
+There are four ways of traversing trees:
+![Binary Search Tree example](../../../../../../../images/binary_search_tree_example.png) 
+
+**Level**: visit nodes on each level (not used very often):
+```
+25, 20, 27, 15, 22, 26, 30, 29, 32
+```
+**Pre-order**: visit the root of every sub-tree first:
+```
+25, 20, 15, 22, 27, 26, 30, 29, 32
+```
+**Post-order**: visit the root of every sub-tree last:
+```
+15, 22, 20, 26, 29, 32, 30, 27, 25
+```
+**In-order**: visit left child, then root, then right child:
+```
+15, 20, 22, 25, 26, 27, 29, 30, 32
+```
