@@ -1,5 +1,7 @@
 package com.bgasparotto.datastructures.datastructure.tree;
 
+import java.util.List;
+
 public class BinaryTreeNode {
     private final int value;
 
@@ -35,5 +37,17 @@ public class BinaryTreeNode {
             return true;
         }
         return rightChild.add(value);
+    }
+
+    public void traverseInOrder(List<String> collector) {
+        if (leftChild != null) {
+            leftChild.traverseInOrder(collector);
+        }
+
+        collector.add(String.valueOf(value));
+
+        if (rightChild != null) {
+            rightChild.traverseInOrder(collector);
+        }
     }
 }

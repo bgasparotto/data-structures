@@ -26,4 +26,22 @@ public class SimpleBinarySearchTreeTest {
         assertThat(tree.add(7)).isFalse(); // duplicate
         assertThat(tree.size()).isEqualTo(1);
     }
+
+    @Test
+    public void shouldTraverseInOrder() {
+        addAll(tree, 12, 9, 33, 21, 15);
+
+        assertThat(tree.traverseInOrder()).isEqualTo("[9, 12, 15, 21, 33]");
+    }
+
+    @Test
+    public void shouldReturnEmptyTraversalWhenTreeIsEmpty() {
+        assertThat(tree.traverseInOrder()).isEqualTo("[]");
+    }
+
+    private void addAll(SimpleBinarySearchTree tree, int... values) {
+        for (int value : values) {
+            tree.add(value);
+        }
+    }
 }

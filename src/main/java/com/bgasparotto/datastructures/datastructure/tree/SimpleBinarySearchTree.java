@@ -1,5 +1,8 @@
 package com.bgasparotto.datastructures.datastructure.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SimpleBinarySearchTree {
     private BinaryTreeNode root;
     private int size;
@@ -31,5 +34,14 @@ public class SimpleBinarySearchTree {
 
     boolean isEmpty() {
         return size == 0;
+    }
+
+    public String traverseInOrder() {
+        if (isEmpty()) {
+            return "[]";
+        }
+        List<String> collector = new ArrayList<>(size);
+        root.traverseInOrder(collector);
+        return "[" + String.join(", ", collector) + "]";
     }
 }
