@@ -39,6 +39,20 @@ public class BinaryTreeNode {
         return rightChild.add(value);
     }
 
+    public int min() {
+        if (leftChild != null) {
+            return leftChild.min();
+        }
+        return value;
+    }
+
+    public int max() {
+        if (rightChild != null) {
+            return rightChild.max();
+        }
+        return value;
+    }
+
     public void traverseInOrder(List<String> collector) {
         if (leftChild != null) {
             leftChild.traverseInOrder(collector);

@@ -39,6 +39,30 @@ public class SimpleBinarySearchTreeTest {
         assertThat(tree.traverseInOrder()).isEqualTo("[]");
     }
 
+    @Test
+    public void shouldGetTheMinimumValue() {
+        addAll(tree, 12, 9, 3, 21, 15);
+
+        assertThat(tree.min()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldReturnZeroMinValueWhenTreeIsEmpty() {
+        assertThat(tree.min()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldGetTheMaximumValue() {
+        addAll(tree, 12, 9, 3, 21, 15);
+
+        assertThat(tree.max()).isEqualTo(21);
+    }
+
+    @Test
+    public void shouldReturnZeroMaxValueWhenTreeIsEmpty() {
+        assertThat(tree.max()).isEqualTo(0);
+    }
+
     private void addAll(SimpleBinarySearchTree tree, int... values) {
         for (int value : values) {
             tree.add(value);

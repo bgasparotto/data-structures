@@ -28,6 +28,20 @@ public class SimpleBinarySearchTree {
         return added;
     }
 
+    public int min() {
+        if (isEmpty()) {
+            return 0;
+        }
+        return root.min();
+    }
+
+    public int max() {
+        if (isEmpty()) {
+            return 0;
+        }
+        return root.max();
+    }
+
     public int size() {
         return size;
     }
