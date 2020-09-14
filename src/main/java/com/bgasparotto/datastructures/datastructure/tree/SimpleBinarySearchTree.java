@@ -36,18 +36,16 @@ public class SimpleBinarySearchTree {
         return root.get(value);
     }
 
-    public int min() {
-        if (isEmpty()) {
-            return 0;
-        }
-        return root.min();
+    public Optional<Integer> min() {
+        return Optional
+                .ofNullable(root)
+                .map(BinaryTreeNode::min);
     }
 
-    public int max() {
-        if (isEmpty()) {
-            return 0;
-        }
-        return root.max();
+    public Optional<Integer> max() {
+        return Optional
+                .ofNullable(root)
+                .map(BinaryTreeNode::max);
     }
 
     public int size() {

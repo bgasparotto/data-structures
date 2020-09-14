@@ -57,24 +57,24 @@ public class SimpleBinarySearchTreeTest {
     public void shouldGetTheMinimumValue() {
         addAll(tree, 12, 9, 3, 21, 15);
 
-        assertThat(tree.min()).isEqualTo(3);
+        assertThat(tree.min()).contains(3);
     }
 
     @Test
-    public void shouldReturnZeroMinValueWhenTreeIsEmpty() {
-        assertThat(tree.min()).isEqualTo(0);
+    public void shouldReturnEmptyMinValueWhenTreeIsEmpty() {
+        assertThat(tree.min()).isEmpty();
     }
 
     @Test
     public void shouldGetTheMaximumValue() {
         addAll(tree, 12, 9, 3, 21, 15);
 
-        assertThat(tree.max()).isEqualTo(21);
+        assertThat(tree.max()).contains(21);
     }
 
     @Test
     public void shouldReturnZeroMaxValueWhenTreeIsEmpty() {
-        assertThat(tree.max()).isEqualTo(0);
+        assertThat(tree.max()).isEmpty();
     }
 
     @Test
