@@ -1,6 +1,7 @@
 package com.bgasparotto.datastructures.datastructure.tree;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BinaryTreeNode {
     private final int value;
@@ -10,6 +11,10 @@ public class BinaryTreeNode {
 
     public BinaryTreeNode(int value) {
         this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public boolean add(int value) {
@@ -63,5 +68,21 @@ public class BinaryTreeNode {
         if (rightChild != null) {
             rightChild.traverseInOrder(collector);
         }
+    }
+
+    public Optional<BinaryTreeNode> get(int value) {
+        if (value == this.value) {
+            return Optional.of(this);
+        }
+
+        if (value < this.value && leftChild != null) {
+            return leftChild.get(value);
+        }
+
+        if (value > this.value && rightChild != null) {
+            return rightChild.get(value);
+        }
+
+        return Optional.empty();
     }
 }

@@ -2,6 +2,7 @@ package com.bgasparotto.datastructures.datastructure.tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class SimpleBinarySearchTree {
     private BinaryTreeNode root;
@@ -26,6 +27,13 @@ public class SimpleBinarySearchTree {
         size = added ? size + 1 : size;
 
         return added;
+    }
+
+    public Optional<BinaryTreeNode> get(int value) {
+        if (isEmpty()) {
+            return Optional.empty();
+        }
+        return root.get(value);
     }
 
     public int min() {
