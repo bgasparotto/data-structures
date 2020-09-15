@@ -30,10 +30,9 @@ public class SimpleBinarySearchTree {
     }
 
     public Optional<BinaryTreeNode> get(int value) {
-        if (isEmpty()) {
-            return Optional.empty();
-        }
-        return root.get(value);
+        return Optional
+                .ofNullable(root)
+                .flatMap(rootNode -> rootNode.get(value));
     }
 
     public Optional<Integer> min() {
