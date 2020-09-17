@@ -60,18 +60,18 @@ public class BinaryTreeNode {
         return rightChild.add(value);
     }
 
-    public int min() {
+    public BinaryTreeNode min() {
         if (leftChild != null) {
             return leftChild.min();
         }
-        return value;
+        return this;
     }
 
-    public int max() {
+    public BinaryTreeNode max() {
         if (rightChild != null) {
             return rightChild.max();
         }
-        return value;
+        return this;
     }
 
     public void traverseInOrder(List<String> collector) {

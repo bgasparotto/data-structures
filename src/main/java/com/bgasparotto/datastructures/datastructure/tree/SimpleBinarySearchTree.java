@@ -76,13 +76,15 @@ public class SimpleBinarySearchTree {
     public Optional<Integer> min() {
         return Optional
                 .ofNullable(root)
-                .map(BinaryTreeNode::min);
+                .map(BinaryTreeNode::min)
+                .map(BinaryTreeNode::getValue);
     }
 
     public Optional<Integer> max() {
         return Optional
                 .ofNullable(root)
-                .map(BinaryTreeNode::max);
+                .map(BinaryTreeNode::max)
+                .map(BinaryTreeNode::getValue);
     }
 
     public int size() {
