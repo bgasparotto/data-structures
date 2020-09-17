@@ -17,6 +17,22 @@ public class BinaryTreeNode {
         return value;
     }
 
+    public BinaryTreeNode getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(BinaryTreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public BinaryTreeNode getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(BinaryTreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+
     public boolean add(int value) {
         if (value < this.value) {
             return addLeft(value);
@@ -86,47 +102,15 @@ public class BinaryTreeNode {
         return Optional.empty();
     }
 
-    public boolean remove(int value) {
-        if (value < this.value && leftChild != null) {
-            if (leftChild.value == value) {
-                leftChild = removeNode(leftChild);
-                return true;
-            }
-            return leftChild.remove(value);
-        }
-
-        if (value > this.value && rightChild != null) {
-            if (rightChild.value == value) {
-                rightChild = removeNode(leftChild);
-                return true;
-            }
-            return rightChild.remove(value);
-        }
-
-        return false;
-    }
-
-    public BinaryTreeNode removeNode(BinaryTreeNode node) {
-        if (node.isLeaf()) {
-            return null;
-        }
-        if (node.hasOneChild()) {
-            return Optional
-                    .ofNullable(node.leftChild)
-                    .orElse(node.rightChild);
-        }
-        return node;
-    }
-
-    private boolean isLeaf() {
+    public boolean isLeaf() {
         return leftChild == null && rightChild == null;
     }
 
-    private boolean hasOneChild() {
+    public boolean hasOneChild() {
         return !isLeaf() && !hasTwoChildren();
     }
 
-    private boolean hasTwoChildren() {
+    public boolean hasTwoChildren() {
         return leftChild != null && rightChild != null;
     }
 }

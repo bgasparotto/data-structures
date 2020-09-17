@@ -35,21 +35,42 @@ public class SimpleBinarySearchTree {
                 .flatMap(rootNode -> rootNode.get(value));
     }
 
-    public boolean remove(int value) {
-        boolean removed = Optional
-                .ofNullable(root)
-                .map(rootNode -> removeNode(rootNode, value))
-                .orElse(false);
-        size = removed ? size - 1 : size;
-        return removed;
+    public void remove(int value) {
+        if (isEmpty()) {
+            return;
+        }
+        root = removeOrReturn(root, value);
     }
 
-    private Boolean removeNode(BinaryTreeNode rootNode, int value) {
-        if (rootNode.getValue() == value) {
-            root = root.removeNode(root);
-            return true;
+    private BinaryTreeNode removeOrReturn(BinaryTreeNode node, int value) {
+        if (node.getValue() == value) {
+            return removeNode(node);
         }
-        return rootNode.remove(value);
+
+        BinaryTreeNode leftChild = node.getLeftChild();
+        if (value < node.getValue() && leftChild != null) {
+            node.setLeftChild(removeOrReturn(leftChild, value));
+        }
+
+        BinaryTreeNode rightChild = node.getRightChild();
+        if (value > node.getValue() && rightChild != null) {
+            node.setRightChild(removeOrReturn(rightChild, value));
+        }
+
+        return node;
+    }
+
+    public BinaryTreeNode removeNode(BinaryTreeNode node) {
+        size--;
+        if (node.isLeaf()) {
+            return null;
+        }
+        if (node.hasOneChild()) {
+            return Optional
+                    .ofNullable(node.getLeftChild())
+                    .orElse(node.getRightChild());
+        }
+        return node;
     }
 
     public Optional<Integer> min() {
