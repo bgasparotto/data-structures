@@ -35,6 +35,23 @@ public class SimpleBinarySearchTree {
                 .flatMap(rootNode -> rootNode.get(value));
     }
 
+    public boolean remove(int value) {
+        boolean removed = Optional
+                .ofNullable(root)
+                .map(rootNode -> removeNode(rootNode, value))
+                .orElse(false);
+        size = removed ? size - 1 : size;
+        return removed;
+    }
+
+    private Boolean removeNode(BinaryTreeNode rootNode, int value) {
+        if (rootNode.getValue() == value) {
+            root = root.removeNode(root);
+            return true;
+        }
+        return rootNode.remove(value);
+    }
+
     public Optional<Integer> min() {
         return Optional
                 .ofNullable(root)

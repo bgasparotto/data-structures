@@ -347,3 +347,9 @@ There are four ways of traversing trees:
 ```
 15, 20, 22, 25, 26, 27, 29, 30, 32
 ```
+
+### Deletion
+A few deletion scenarios are when:
+1. Node is a leaf, then it can be simply removed from the tree;
+2. Node has one child, then the child just replaces the node we are deleting;
+3. Node has two children, the most complex case. 

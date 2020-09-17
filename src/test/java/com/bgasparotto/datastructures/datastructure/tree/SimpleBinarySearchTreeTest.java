@@ -61,6 +61,42 @@ public class SimpleBinarySearchTreeTest {
     }
 
     @Test
+    public void shouldRemoveLeafNodeAndReturnTrue() {
+        addAll(tree, 12, 9, 3, 21, 15);
+
+        assertThat(tree.remove(3)).isTrue();
+        assertThat(tree.size()).isEqualTo(4);
+        assertThat(tree.traverseInOrder()).isEqualTo("[9, 12, 15, 21]");
+    }
+
+    @Test
+    public void shouldRemoveNodeThatHasOneChild() {
+        addAll(tree, 12, 9, 3, 21, 15);
+
+        assertThat(tree.remove(9)).isTrue();
+        assertThat(tree.size()).isEqualTo(4);
+        assertThat(tree.traverseInOrder()).isEqualTo("[3, 12, 15, 21]");
+    }
+
+    @Test
+    public void shouldRemoveRootNodeWhenItHasOnlyOneChild() {
+        addAll(tree, 3, 9, 15, 21, 55);
+
+        assertThat(tree.remove(3)).isTrue();
+        assertThat(tree.size()).isEqualTo(4);
+        assertThat(tree.traverseInOrder()).isEqualTo("[9, 15, 21, 55]");
+    }
+
+    @Test
+    public void shouldReturnFalseWhenNodeDoesNotExistForRemoval() {
+        addAll(tree, 12, 9, 3, 21, 15);
+
+        assertThat(tree.remove(99)).isFalse();
+        assertThat(tree.size()).isEqualTo(5);
+        assertThat(tree.traverseInOrder()).isEqualTo("[3, 9, 12, 15, 21]");
+    }
+
+    @Test
     public void shouldReturnEmptyMinValueWhenTreeIsEmpty() {
         assertThat(tree.min()).isEmpty();
     }

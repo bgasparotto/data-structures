@@ -85,4 +85,48 @@ public class BinaryTreeNode {
 
         return Optional.empty();
     }
+
+    public boolean remove(int value) {
+        if (value < this.value && leftChild != null) {
+            if (leftChild.value == value) {
+                leftChild = removeNode(leftChild);
+                return true;
+            }
+            return leftChild.remove(value);
+        }
+
+        if (value > this.value && rightChild != null) {
+            if (rightChild.value == value) {
+                rightChild = removeNode(leftChild);
+                return true;
+            }
+            return rightChild.remove(value);
+        }
+
+        return false;
+    }
+
+    public BinaryTreeNode removeNode(BinaryTreeNode node) {
+        if (node.isLeaf()) {
+            return null;
+        }
+        if (node.hasOneChild()) {
+            return Optional
+                    .ofNullable(node.leftChild)
+                    .orElse(node.rightChild);
+        }
+        return node;
+    }
+
+    private boolean isLeaf() {
+        return leftChild == null && rightChild == null;
+    }
+
+    private boolean hasOneChild() {
+        return !isLeaf() && !hasTwoChildren();
+    }
+
+    private boolean hasTwoChildren() {
+        return leftChild != null && rightChild != null;
+    }
 }
