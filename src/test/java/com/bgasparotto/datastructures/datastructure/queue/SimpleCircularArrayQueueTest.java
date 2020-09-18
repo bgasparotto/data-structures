@@ -26,10 +26,10 @@ public class SimpleCircularArrayQueueTest extends AbstractSimpleQueueTest {
         assertThat(queue.isEmpty()).isTrue();
     }
 
-    @Test // May take more than a minute to run.
+    @Test
     public void shouldNotExplodeInternalArrayStorage() {
         queue.enqueue(jack); // Size will always be >= 1 so indexes won't reset but will wrap.
-        enqueueAndDequeueRepeatedly(jack, Integer.MAX_VALUE);
+        enqueueAndDequeueRepeatedly(jack, 10000);
 
         assertThat(queue.dequeue()).isEqualTo(jack);
 
