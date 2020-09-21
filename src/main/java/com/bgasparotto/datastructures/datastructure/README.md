@@ -352,4 +352,9 @@ There are four ways of traversing trees:
 A few deletion scenarios are when:
 1. Node is a leaf, then it can be simply removed from the tree;
 2. Node has one child, then the child just replaces the node we are deleting;
-3. Node has two children, the most complex case. 
+3. Node has two children, the most complex case, then we should:
+   - Find the replacement node;
+   - Strive for minimal disruption on the existing tree strucutre;
+   - Take the replacement node from either left or right subtree. Choose one and stick to it;
+   - If taking it from the left subtree, we have to take the largest value from it;
+   - If taking it from the right subtree, then we take the smallest value;

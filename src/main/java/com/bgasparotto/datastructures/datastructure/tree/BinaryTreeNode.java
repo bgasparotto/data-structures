@@ -61,17 +61,25 @@ public class BinaryTreeNode {
     }
 
     public BinaryTreeNode min() {
+        return min(null).getNode();
+    }
+
+    public BinaryTreeNodePair min(BinaryTreeNode parent) {
         if (leftChild != null) {
-            return leftChild.min();
+            return leftChild.min(this);
         }
-        return this;
+        return new BinaryTreeNodePair(parent, this);
     }
 
     public BinaryTreeNode max() {
+        return max(null).getNode();
+    }
+
+    public BinaryTreeNodePair max(BinaryTreeNode parent) {
         if (rightChild != null) {
-            return rightChild.max();
+            return rightChild.max(this);
         }
-        return this;
+        return new BinaryTreeNodePair(parent, this);
     }
 
     public void traverseInOrder(List<String> collector) {
@@ -112,5 +120,12 @@ public class BinaryTreeNode {
 
     public boolean hasTwoChildren() {
         return leftChild != null && rightChild != null;
+    }
+
+    @Override
+    public String toString() {
+        return "BinaryTreeNode{" +
+                "value=" + value +
+                '}';
     }
 }

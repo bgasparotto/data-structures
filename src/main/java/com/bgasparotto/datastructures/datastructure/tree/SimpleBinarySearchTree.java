@@ -66,11 +66,47 @@ public class SimpleBinarySearchTree {
             return null;
         }
         if (node.hasOneChild()) {
-            return Optional
-                    .ofNullable(node.getLeftChild())
-                    .orElse(node.getRightChild());
+            return availableChild(node);
         }
-        return node;
+        return maxFromLeftSubtree(node);
+    }
+
+    private BinaryTreeNode availableChild(BinaryTreeNode node) {
+        return Optional
+                .ofNullable(node.getLeftChild())
+                .orElse(node.getRightChild());
+    }
+
+    private BinaryTreeNode maxFromLeftSubtree(BinaryTreeNode node) {
+        BinaryTreeNodePair replacementPair = findReplacementNode(node);
+
+        BinaryTreeNode parent = replacementPair.getParent();
+        BinaryTreeNode replacementNode = replacementPair.getNode();
+
+        rewireLeftChild(node, replacementNode);
+        rewireRightChild(node, replacementNode, parent);
+
+        return replacementNode;
+    }
+
+    private BinaryTreeNodePair findReplacementNode(BinaryTreeNode node) {
+        BinaryTreeNode leftChild = node.getLeftChild();
+        return leftChild.max(node);
+    }
+
+    private void rewireLeftChild(BinaryTreeNode node, BinaryTreeNode replacementNode) {
+        BinaryTreeNode leftChild = node.getLeftChild();
+
+        if (replacementNode.getLeftChild() == null) {
+            replacementNode.setLeftChild(leftChild);
+        }
+    }
+
+    private void rewireRightChild(BinaryTreeNode node, BinaryTreeNode replacementNode, BinaryTreeNode parent) {
+        BinaryTreeNode rightChild = node.getRightChild();
+
+        replacementNode.setRightChild(rightChild);
+        parent.setRightChild(null);
     }
 
     public Optional<Integer> min() {

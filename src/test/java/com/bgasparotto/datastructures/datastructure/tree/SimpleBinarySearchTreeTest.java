@@ -91,6 +91,47 @@ public class SimpleBinarySearchTreeTest {
     }
 
     @Test
+    public void shouldRemoveNodeThatHasTwoChildren() {
+        addAll(tree, 12, 9, 3, 21, 15, 55, 13);
+
+        tree.remove(21);
+
+        assertThat(tree.size()).isEqualTo(6);
+        assertThat(tree.traverseInOrder()).isEqualTo("[3, 9, 12, 13, 15, 55]");
+    }
+
+    @Test
+    public void shouldRemoveNodeThatHasTwoChildrenFromBigTree() {
+        addAll(tree, 12, 9, 3, 21, 15, 55, 13, 2, 4, 1, 42, 33, 43, 19, 17, 10, 11);
+
+        tree.remove(9);
+
+        assertThat(tree.size()).isEqualTo(16);
+        assertThat(tree.traverseInOrder()).isEqualTo("[1, 2, 3, 4, 10, 11, 12, 13, 15, 17, 19, 21, 33, 42, 43, 55]");
+    }
+
+    @Test
+    public void shouldRemoveRootNodeThatHasTwoChildren() {
+        addAll(tree, 12, 9, 3, 21, 15, 55, 13);
+
+        tree.remove(12);
+
+        assertThat(tree.size()).isEqualTo(6);
+        assertThat(tree.traverseInOrder()).isEqualTo("[3, 9, 13, 15, 21, 55]");
+    }
+
+    @Test
+    public void shouldRemoveRootNodeThatHasTwoChildrenFromBigTree() {
+        addAll(tree, 12, 9, 3, 21, 15, 55, 13, 2, 4, 1, 42, 33, 43, 19, 17, 10, 11);
+
+        tree.remove(12);
+
+        assertThat(tree.size()).isEqualTo(16);
+        assertThat(tree.traverseInOrder()).isEqualTo("[1, 2, 3, 4, 9, 10, 11, 13, 15, 17, 19, 21, 33, 42, 43, 55]");
+    }
+
+
+    @Test
     public void shouldNotChangeTheTreeWhenNodeDoesNotExistForRemoval() {
         addAll(tree, 12, 9, 3, 21, 15);
 
