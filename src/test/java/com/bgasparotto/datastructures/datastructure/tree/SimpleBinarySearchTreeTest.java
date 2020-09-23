@@ -102,12 +102,12 @@ public class SimpleBinarySearchTreeTest {
 
     @Test
     public void shouldRemoveNodeThatHasTwoChildrenFromBigTree() {
-        addAll(tree, 12, 9, 3, 21, 15, 55, 13, 2, 4, 1, 42, 33, 43, 19, 17, 10, 11);
+        addAll(tree, 12, 8, 9, 3, 21, 15, 55, 13, 2, 5, 4, 1, 42, 33, 43, 19, 17, 11, 10);
 
-        tree.remove(9);
+        tree.remove(8);
 
-        assertThat(tree.size()).isEqualTo(16);
-        assertThat(tree.traverseInOrder()).isEqualTo("[1, 2, 3, 4, 10, 11, 12, 13, 15, 17, 19, 21, 33, 42, 43, 55]");
+        assertThat(tree.size()).isEqualTo(18);
+        assertThat(tree.traverseInOrder()).isEqualTo("[1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 15, 17, 19, 21, 33, 42, 43, 55]");
     }
 
     @Test

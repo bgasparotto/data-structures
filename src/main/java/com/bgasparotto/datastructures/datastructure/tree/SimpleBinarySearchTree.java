@@ -44,7 +44,7 @@ public class SimpleBinarySearchTree {
 
     private BinaryTreeNode removeOrReturn(BinaryTreeNode node, int value) {
         if (node.getValue() == value) {
-            return removeNode(node);
+            return removeAndFindReplacement(node);
         }
 
         BinaryTreeNode leftChild = node.getLeftChild();
@@ -60,7 +60,7 @@ public class SimpleBinarySearchTree {
         return node;
     }
 
-    public BinaryTreeNode removeNode(BinaryTreeNode node) {
+    public BinaryTreeNode removeAndFindReplacement(BinaryTreeNode node) {
         size--;
         if (node.isLeaf()) {
             return null;
@@ -77,36 +77,38 @@ public class SimpleBinarySearchTree {
                 .orElse(node.getRightChild());
     }
 
-    private BinaryTreeNode maxFromLeftSubtree(BinaryTreeNode node) {
-        BinaryTreeNodePair replacementPair = findReplacementNode(node);
+    private BinaryTreeNode maxFromLeftSubtree(BinaryTreeNode nodeBeingRemoved) {
+        BinaryTreeNodePair replacementPair = findReplacementFor(nodeBeingRemoved);
 
         BinaryTreeNode parent = replacementPair.getParent();
         BinaryTreeNode replacementNode = replacementPair.getNode();
 
-        rewireLeftChild(node, replacementNode);
-        rewireRightChild(node, replacementNode, parent);
+        linkLeftChild(nodeBeingRemoved, replacementNode, parent);
+        linkRightChild(nodeBeingRemoved, replacementNode);
 
         return replacementNode;
     }
 
-    private BinaryTreeNodePair findReplacementNode(BinaryTreeNode node) {
-        BinaryTreeNode leftChild = node.getLeftChild();
-        return leftChild.max(node);
+    private BinaryTreeNodePair findReplacementFor(BinaryTreeNode nodeBeingRemoved) {
+        BinaryTreeNode leftChild = nodeBeingRemoved.getLeftChild();
+        return leftChild.max(nodeBeingRemoved);
     }
 
-    private void rewireLeftChild(BinaryTreeNode node, BinaryTreeNode replacementNode) {
-        BinaryTreeNode leftChild = node.getLeftChild();
-
-        if (replacementNode.getLeftChild() == null) {
-            replacementNode.setLeftChild(leftChild);
+    private void linkLeftChild(BinaryTreeNode nodeBeingRemoved, BinaryTreeNode replacementNode, BinaryTreeNode parent) {
+        if (parent == nodeBeingRemoved) {
+            return;
         }
+
+        BinaryTreeNode leftChild = nodeBeingRemoved.getLeftChild();
+        BinaryTreeNode leftOrphanFromReplacement = replacementNode.getLeftChild();
+
+        replacementNode.setLeftChild(leftChild);
+        parent.setRightChild(leftOrphanFromReplacement);
     }
 
-    private void rewireRightChild(BinaryTreeNode node, BinaryTreeNode replacementNode, BinaryTreeNode parent) {
-        BinaryTreeNode rightChild = node.getRightChild();
-
+    private void linkRightChild(BinaryTreeNode nodeBeingRemoved, BinaryTreeNode replacementNode) {
+        BinaryTreeNode rightChild = nodeBeingRemoved.getRightChild();
         replacementNode.setRightChild(rightChild);
-        parent.setRightChild(null);
     }
 
     public Optional<Integer> min() {
