@@ -285,6 +285,10 @@ k: average length of the linked lists in a chained hash table
 ### Examples of trees:
   - The Java class model, where the root node is the `Object` class;
   - A file system, where the root node is the `/` folder;
+
+### Trees in the JDK:
+- `TreeMap`
+- `TreeSet`
   
 ### Complete Binary Tree
 A binary tree is **complete** if every level, except the last level, has two children, and at the 
@@ -324,7 +328,7 @@ A **full** binary tree is complete and has all last level nodes with both left a
   everything at the same side, emulating a linked list.
 - In general, the left and right sub-trees should be as balanced as possible, in other words, their
   height should not differ much.
-- Some advanced trees such as AVL and red black trees would shift sub-trees in order to rebalance
+- Some advanced trees such as AVL and red-black trees would shift sub-trees in order to rebalance
   the trees.
 
 ### Traversal
@@ -354,7 +358,7 @@ A few deletion scenarios are when:
 2. Node has one child, then the child just replaces the node we are deleting;
 3. Node has two children, the most complex case, then we should:
    - Find the replacement node;
-   - Strive for minimal disruption on the existing tree strucutre;
+   - Strive for minimal disruption on the existing tree structure;
    - Take the replacement node from either left or right subtree. Choose one and stick to it;
    - If taking it from the left subtree, we have to take the largest value from it;
    - If taking it from the right subtree, then we take the smallest value;
