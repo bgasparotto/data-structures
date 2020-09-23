@@ -166,8 +166,16 @@ public class SimpleBinarySearchTreeTest {
     }
 
     @Test
+    public void shouldTraversePreOrder() {
+        addAll(tree, 12, 9, 33, 21, 15);
+
+        assertThat(tree.traversePreOrder()).isEqualTo("[12, 9, 33, 21, 15]");
+    }
+
+    @Test
     public void shouldReturnEmptyTraversalWhenTreeIsEmpty() {
         assertThat(tree.traverseInOrder()).isEqualTo("[]");
+        assertThat(tree.traversePreOrder()).isEqualTo("[]");
     }
 
     private void addAll(SimpleBinarySearchTree tree, int... values) {

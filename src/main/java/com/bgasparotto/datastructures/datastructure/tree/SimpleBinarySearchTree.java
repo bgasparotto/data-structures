@@ -3,6 +3,8 @@ package com.bgasparotto.datastructures.datastructure.tree;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class SimpleBinarySearchTree {
     private BinaryTreeNode root;
@@ -134,11 +136,25 @@ public class SimpleBinarySearchTree {
     }
 
     public String traverseInOrder() {
+        return traverse(BinaryTreeNode::traverseInOrder);
+    }
+
+    private String traverse(BiConsumer<BinaryTreeNode, List<String>> traversalFunction) {
         if (isEmpty()) {
             return "[]";
         }
+
         List<String> collector = new ArrayList<>(size);
-        root.traverseInOrder(collector);
+        traversalFunction.accept(root, collector);
+
+        return asString(collector);
+    }
+
+    private String asString(List<String> collector) {
         return "[" + String.join(", ", collector) + "]";
+    }
+
+    public String traversePreOrder() {
+        return traverse(BinaryTreeNode::traversePreOrder);
     }
 }

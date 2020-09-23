@@ -82,18 +82,6 @@ public class BinaryTreeNode {
         return new BinaryTreeNodePair(parent, this);
     }
 
-    public void traverseInOrder(List<String> collector) {
-        if (leftChild != null) {
-            leftChild.traverseInOrder(collector);
-        }
-
-        collector.add(String.valueOf(value));
-
-        if (rightChild != null) {
-            rightChild.traverseInOrder(collector);
-        }
-    }
-
     public Optional<BinaryTreeNode> get(int value) {
         if (value == this.value) {
             return Optional.of(this);
@@ -120,6 +108,30 @@ public class BinaryTreeNode {
 
     public boolean hasTwoChildren() {
         return leftChild != null && rightChild != null;
+    }
+
+    public void traverseInOrder(List<String> collector) {
+        if (leftChild != null) {
+            leftChild.traverseInOrder(collector);
+        }
+
+        collector.add(String.valueOf(value));
+
+        if (rightChild != null) {
+            rightChild.traverseInOrder(collector);
+        }
+    }
+
+    public void traversePreOrder(List<String> collector) {
+        collector.add(String.valueOf(value));
+
+        if (leftChild != null) {
+            leftChild.traversePreOrder(collector);
+        }
+
+        if (rightChild != null) {
+            rightChild.traversePreOrder(collector);
+        }
     }
 
     @Override
