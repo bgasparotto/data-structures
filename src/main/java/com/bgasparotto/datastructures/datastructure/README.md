@@ -362,3 +362,19 @@ A few deletion scenarios are when:
    - Take the replacement node from either left or right subtree. Choose one and stick to it;
    - If taking it from the left subtree, we have to take the largest value from it;
    - If taking it from the right subtree, then we take the smallest value;
+
+# Heap
+A Heap is a special type of binary tree, of which the following requirements are satisfied:
+1. Must be a *complete* binary tree;
+2. Must satisfy the heap property, by *either*:
+   - *Max heap*: every parent node is greater than of equal to its children, or:
+   - *Min heap*: every parent node is less than or equal to its children.
+  
+- Children are added at each level from left to right;
+- Heaps are usually implemented as arrays;
+- The maximum or minimum value will always be at the root of the tree, which is the advantage of
+  using a heap;
+- *Heapify* is the process of converting a binary tree into a heap. This often has to be done after
+  an insertion or deletion;
+- There is no required ordering among siblings. The important relation between values is just among
+  parents and children.
