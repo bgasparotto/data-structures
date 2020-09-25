@@ -13,7 +13,7 @@ public final class TreeNodeLocator {
     }
 
     public static int parentOf(int nodeIndex) {
-        return Math.floorDiv(nodeIndex - 1, 2);
+        return (nodeIndex - 1) / 2;
     }
 
     public static int leftChildOf(int nodeIndex) {
