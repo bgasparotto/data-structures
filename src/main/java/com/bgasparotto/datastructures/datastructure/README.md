@@ -378,3 +378,24 @@ A Heap is a special type of binary tree, of which the following requirements are
   an insertion or deletion;
 - There is no required ordering among siblings. The important relation between values is just among
   parents and children.
+  
+## Heaps as Arrays
+![Binary Search Tree example](../../../../../../../images/heap_as_array_example.png)
+
+- We can use an array to back a binary heap;
+- We put the *root* at `array[0]`;
+- We then store each level of the tree from left to right, so:
+  - `array[1]` is the left child of root;
+  - `array[2]` is the right child of root;
+  - etc;
+- To find out the left and right child of a node in `array[i]`:
+  - *Left child*: `2i + 1`;
+  - *Right child*: `2i + 2`;
+  - *Parent*: `floor((i - 1) / 2)`;
+  
+### Insertion
+- Always add new items to the end of the array;
+- Then we have to fix the heap (heapify):
+  1. We compare the new item against its parent:
+  2. If the item is greater than its parent (for max heap), we swap them;
+  3. Repeat until we compare with the root, or the new value is less than the parent.
