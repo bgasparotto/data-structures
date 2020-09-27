@@ -57,27 +57,31 @@ unsorted position of the partition.
    and `lastUnsortedIndex` is subtracted by `1`.
 
 ## Insertion Sort: O(n²)
-- This algorithm partitions the beginning of the array and inserts value from the unsorted partition
-  into the sorted partition in sorted manner. That happens by shifting the values from the unsorted
-  partition to their right until we find the right place for the new element.
+This algorithm partitions the beginning of the array and inserts the value from the unsorted
+partition into the sorted partition in the correct order.
+
+The sorting happens by shifting the values from the unsorted partition to their right until we find
+the right place for the new element.
+
+- It is a *stable* algorithm. The values that already sitting at the right order don't get swapped.
 - In-place algorithm: uses only one array, logically partitioning the array into *sorted* and
   *unsorted*, and keeping track of the index of the largest number until the end of each iteration.
-- We define the partition by initialising a variable such as `firstUnsortedIndex` with value `1`.
-  Since the left side of the partition is still an array with a single element, it is safe to say
-  that it is sorted.
-- A loop starts at index `firstUnsortedIndex = 1` and goes until the end of the array:
-  - A variable `newElement` is assigned the value of `array[firstUnsortedIndex]`.
-  - A variable `i` is initialised with the value of the last sorted index, which will be
-    `firstUnsortedIndex - 1`;
-  - The inner loop goes from the right to the left, comparing the value of `newElement` against
-    `array[i]` until the start of the array:
-      - If `array[firstUnsortedIndex] >= array[i]` then the `newElement` is already at the right
-        place in the sorted partition (not on the entire array, but at least at the sorted
-        partition);
-      - Otherwise, the value of `array[i]` is "shifted to the right", taking over `array[i + 1]`.
-  - When the inner loop hits the start of the array, `newElement` is assigned to it since no bigger
-    values were found in all the iterations through the sorted partition.
-- It is a *stable* algorithm given values that already sitting at the right order don't get swapped.
+
+##### Steps
+1. We define the partition by initialising a variable such as `firstUnsortedIndex` with value `1`.
+   Whilst the left side of the partition is still an array with a single element, it is fair to say
+   that it is sorted.
+2. A loop starts at `firstUnsortedIndex` and iterates until the end of the array:
+3. A variable `newElement` is assigned the value of `array[firstUnsortedIndex]`.
+4. A variable `i` is initialised with the value of the last sorted index, which will be the value of
+   `firstUnsortedIndex - 1`;
+5. The inner loop goes from the right to the left, comparing the value of `newElement` against
+   `array[i]` until the start of the array:
+6. If `newElement >= array[i]` then the `newElement` is already at the right place in the sorted
+   partition (not on the entire array, but at least at the sorted partition). Otherwise, the value
+   of `array[i]` is "shifted to the right", taking over `array[i + 1]`.
+7. When the inner loop hits the start of the array, `newElement` is assigned to it since no bigger
+   values were found in all the iterations through the sorted partition.
 
 ## Shell Sort: O(n²) to O(n log n)
 - It is a variation of Insertion Sort. Instead of always shifting neighbour elements, Shell Sort
