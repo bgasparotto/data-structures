@@ -84,41 +84,51 @@ the right place for the new element.
    values were found in all the iterations through the sorted partition.
 
 ## Shell Sort: O(n²) to O(n log n)
-- It is a variation of Insertion Sort. Instead of always shifting neighbour elements, Shell Sort
-  starts by doing preliminary work before insertion by shifting elements using a larger gap, and as
-  the algorithm progresses, it reduces the gap until it goes down to 1. When the gap goes back to 1,
-  this algorithm essentially becomes an Insertion Sort.
-- That happens because like in Insertion Sort, the fewer shifts performed, the faster the algorithm
-  runs. Moreover, if the initial array is also kind of sorted already, the algorithm will run at
-  almost `O(n)`. As 
-- Uses a formula for deciding the gap sequence. Many publications have suggested different gap
-  sequences, check https://en.wikipedia.org/wiki/Shellsort#Gap_sequences for a list of them.
+Shell Sort is a variation of Insertion Sort. Instead of always shifting neighbour elements, Shell
+Sort starts by doing preliminary work before insertion by shifting elements using a larger gap.
+Then, as the algorithm progresses, it reduces the gap until it goes down to 1. At this point, this
+algorithm essentially becomes an Insertion Sort.
+
+As in Insertion Sort, the fewer shifts performed, the faster the algorithm runs. Moreover, if the
+initial array is kind of already sorted, the algorithm will run at almost `O(n)` complexity.
+
 - *Unstable* algorithm, given it will potentially shift elements far from each other, not
   maintaining the order of duplicated elements relative to each other.
-- The gap sequences can also be applied to *Bubble Sort*, but it will also turn it into an unstable
+- *In-place* algorithm.
+- The name *Shell* comes from *Donald Shell* who published the first version of this sort in 1959.
+  It has no relation with shell programming.
+
+##### Gap sequence
+This algorithm uses a formula for deciding the gap sequence. Many publications have suggested
+different gap sequences, please visit https://en.wikipedia.org/wiki/Shellsort#Gap_sequences for a
+list of them.
+
+> The gap sequences can also be applied to *Bubble Sort*, but it will also turn it into an unstable
   algorithm.
 
-***The Knuth sequence***
-- A common choice is the *Knuth Sequence*, which is calculated by `(3^k - 1) / 2`, where `k` should
-  be based on the length of the array. The gap should be as close as possible to the length of the
-  array, without being greater than the length, according to the table below:
-  ```
-  | k | Gap |
-  |---|-----|
-  | 1 | 1   |
-  | 2 | 4   |
-  | 3 | 13  |
-  | 4 | 40  |
-  | 5 | 121 |
-  ```
-- For an array of length 10, you want `k = 2` given the gap is `4` and `gap <= 10`. On the other
-  hand, if you attempted to use `k = 3`, it would yield a gap of `13` that is bigger than the
-  length, whereas `k = 1` is too small given we can still safely use `k = 2` as shown.
+##### The Knuth sequence
+A common choice of gap sequence is the *Knuth Sequence*, which is calculated by the formula
+`(3^k - 1) / 2`, where `k` should be based on the length of the array. The gap should be as close as
+possible to the length of the array without being greater than the length of it.
+ 
+The table below shows the first five *gaps* and *k* values of a Knuth sequence:
+```
+| k | Gap |
+|---|-----|
+| 1 | 1   |
+| 2 | 4   |
+| 3 | 13  |
+| 4 | 40  |
+| 5 | 121 |
+```
+For an array of length 10, you will want `k = 2` given the gap is `4` and `gap <= 10`. On the other
+hand, if you attempt to use `k = 3`, it would yield a gap of `13`, which is bigger than the length,
+whereas `k = 1` is too small given we can still safely use `k = 2` as described.
   
-***A simple sequence***
-- For the sake of abstraction and to remain focused on the sort algorithm, we will use a simpler
-  sequence where `gap = array.length / 2` rounded down, then halving the gap each time until we
-  reach `1`.
+##### A simpler sequence
+For the sake of abstraction and to remain focused on the sort algorithm, we can use a simpler
+sequence where `gap = array.length / 2` rounded down, then, we halve the gap each time until we
+reach `1`.
   
 ## Merge Sort: O(n log n)
 - Divide and conquer algorithm
