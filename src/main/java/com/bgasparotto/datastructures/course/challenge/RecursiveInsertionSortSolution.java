@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.algorithm.sort.challenge.course;
+package com.bgasparotto.datastructures.course.challenge;
 
 public class RecursiveInsertionSortSolution {
 

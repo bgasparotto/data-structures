@@ -1,52 +1,64 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
+import static com.bgasparotto.datastructures.util.ArrayOperations.print;
+
 public class RadixSort {
-
     public static void main(String[] args) {
+        int[] array = {4725, 4586, 1330, 8792, 1594, 5729};
 
-        int[] radixArray = { 4725, 4586, 1330, 8792, 1594, 5729 };
+        RadixSort sorter = new RadixSort();
+        sorter.sort(array, 10, 4);
+        print(array);
+    }
 
-        radixSort(radixArray, 10, 4);
-
-        for (int i = 0; i < radixArray.length; i++) {
-            System.out.println(radixArray[i]);
+    public void sort(int[] array, int radix, int width) {
+        for (int i = width; i > 0; i--) {
+            sortAt(array, radix, i);
         }
     }
 
-    public static void radixSort(int[] input, int radix, int width) {
-        for (int i = 0; i < width; i++) {
-            radixSingleSort(input, i, radix);
+    public void sortAt(int[] array, int radix, int index) {
+        int[] countingSortArray = createCountingSortArray(array, radix, index);
+        accumulateCountForStableSort(countingSortArray);
+
+        int[] tempArray = sortOnCount(array, radix, index, countingSortArray);
+        System.arraycopy(tempArray, 0, array, 0, array.length);
+    }
+
+    private int[] createCountingSortArray(int[] array, int radix, int index) {
+        int[] countingSort = new int[radix];
+        for (int element : array) {
+            int elementDigit = getAtIndex(element, radix, index);
+            countingSort[elementDigit]++;
+        }
+
+        return countingSort;
+    }
+
+    private void accumulateCountForStableSort(int[] countingSort) {
+        for (int i = 1; i < countingSort.length; i++) {
+            countingSort[i] += countingSort[i - 1];
         }
     }
 
-    public static void radixSingleSort(int[] input, int position, int radix) {
-
-        int numItems = input.length;
-        int[] countArray = new int[radix];
-
-        for (int value: input) {
-            countArray[getDigit(position, value, radix)]++;
+    private int[] sortOnCount(int[] array, int radix, int index, int[] countingSortArray) {
+        int inputLength = array.length;
+        int[] tempArray = new int[inputLength];
+        for (int i = inputLength - 1; i >= 0; i--) {
+            int inputElement = array[i];
+            int elementDigit = getAtIndex(inputElement, radix, index);
+            int elementSortedPosition = --countingSortArray[elementDigit];
+            tempArray[elementSortedPosition] = array[i];
         }
-        // Adjust the count array
-        for (int j = 1; j < radix; j++) {
-            countArray[j] += countArray[j - 1];
-        }
-
-        int[] temp = new int[numItems];
-        for (int tempIndex = numItems - 1; tempIndex >= 0; tempIndex--) {
-            temp[--countArray[getDigit(position, input[tempIndex], radix)]] =
-                    input[tempIndex];
-        }
-
-        for (int tempIndex = 0; tempIndex < numItems; tempIndex++) {
-            input[tempIndex] = temp[tempIndex];
-        }
+        return tempArray;
     }
 
-
-    public static int getDigit(int position, int value, int radix) {
-        int digit = value / (int) Math.pow(radix, position) % radix;
-        return digit;
+    public int getAtIndex(int value, int radix, int index) {
+        int width = String.valueOf(value).length();
+        return getAtIndex(value, radix, width, index);
     }
 
+    public int getAtIndex(int value, int radix, int width, int index) {
+        return (int) ((value / Math.pow(radix, width - index)) % radix);
+    }
 }

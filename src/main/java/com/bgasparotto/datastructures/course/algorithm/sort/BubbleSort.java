@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.algorithm.sort;
+package com.bgasparotto.datastructures.course.algorithm.sort;
 
 public class BubbleSort {
 

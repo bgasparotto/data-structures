@@ -1,32 +1,23 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
+import static com.bgasparotto.datastructures.util.ArrayOperations.print;
+import static com.bgasparotto.datastructures.util.ArrayOperations.swap;
+
 public class SelectionSort {
-
     public static void main(String[] args) {
-        int[] intArray = {20, 35, -15, 7, 55, 1, -22};
+        int[] array = {20, 35, -15, 7, 55, 1, -22};
 
-        for (int lastUnsortedIndex = intArray.length - 1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
+        int lastUnsortedIndex = array.length - 1; // At the beginning, no indexes are sorted yet.
+        for (int i = 1; lastUnsortedIndex > 0; lastUnsortedIndex--) {
             int largestIndex = 0;
-            for (int i = 1; i <= lastUnsortedIndex; i++) {
-                if (intArray[i] > intArray[largestIndex]) {
-                    largestIndex = i;
+            for (int j = i; j <= lastUnsortedIndex; j++) {
+                if (array[j] > array[largestIndex]) {
+                    largestIndex = j;
                 }
             }
-            swap(intArray, largestIndex, lastUnsortedIndex);
+            swap(array, lastUnsortedIndex, largestIndex);
         }
 
-        for (int value : intArray) {
-            System.out.println(value);
-        }
-    }
-
-    public static void swap(int[] array, int i, int j) {
-        if (i == j) {
-            return;
-        }
-
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        print(array);
     }
 }

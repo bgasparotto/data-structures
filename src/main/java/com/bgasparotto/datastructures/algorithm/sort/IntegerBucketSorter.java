@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures.algorithm;
+package com.bgasparotto.datastructures.algorithm.sort;
 
 import java.util.ArrayList;
 import java.util.List;

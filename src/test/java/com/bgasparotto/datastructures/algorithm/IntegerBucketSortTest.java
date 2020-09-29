@@ -1,5 +1,6 @@
 package com.bgasparotto.datastructures.algorithm;
 
+import com.bgasparotto.datastructures.algorithm.sort.IntegerBucketSorter;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

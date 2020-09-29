@@ -1,6 +1,6 @@
-package com.bgasparotto.datastructures.algorithm.sort.challenge;
+package com.bgasparotto.datastructures.challenge;
 
-import static com.bgasparotto.datastructures.algorithm.sort.common.ArrayOperations.print;
+import static com.bgasparotto.datastructures.util.ArrayOperations.print;
 
 public class StringRadixSort {
 

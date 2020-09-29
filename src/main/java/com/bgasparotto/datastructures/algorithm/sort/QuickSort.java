@@ -1,48 +1,42 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
+import static com.bgasparotto.datastructures.util.ArrayOperations.print;
+import static com.bgasparotto.datastructures.util.ArrayOperations.swap;
+
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
-
-        quickSort(intArray, 0, intArray.length);
-        for (int value : intArray) {
-            System.out.println(value);
-        }
+        int[] array = {20, 35, -15, 7, 55, 1, -22};
+        quickSort(array, 0, array.length);
+        print(array);
     }
 
-    public static void quickSort(int[] input, int start, int end) {
-        if (end - start < 2) {
+    public static void quickSort(int[] array, int start, int end) {
+        if (end - start < 2) { // if one-element partition
             return;
         }
 
-        int pivotIndex = partition(input, start, end);
-        quickSort(input, start, pivotIndex);
-        quickSort(input, pivotIndex + 1, end);
+        int pivotIndex = partition(array, start, end);
+        quickSort(array, start, pivotIndex);
+        quickSort(array, pivotIndex + 1, end);
     }
 
-    public static int partition(int[] input, int start, int end) {
-        // This is using the first element as the pivot
-        int pivot = input[start];
-        int i = start;
-        int j = end;
+    public static int partition(int[] array, int start, int end) {
+        int pivot = array[start];
+        int leftBorder = start + 1;
 
-        while (i < j) {
-
-            // NOTE: empty loop body
-            while (i < j && input[--j] >= pivot);
-            if (i < j) {
-                input[i] = input[j];
-            }
-
-            // NOTE: empty loop body
-            while (i < j && input[++i] <= pivot);
-            if (i < j) {
-                input[j] = input[i];
+        /*
+         * This algorithm moves all elements less than the pivot to the left, and assigns the pivot value at where the
+         * last smaller value was moved. As a consequence, the pivot will be at the correct place with all elements to
+         * the right being greater than it.
+         */
+        for (int i = leftBorder; i < end; i++) {
+            if (array[i] < pivot) {
+                swap(array, i, leftBorder++);
             }
         }
 
-        input[j] = pivot;
-        return j;
+        swap(array, start, leftBorder - 1);
+        return leftBorder - 1;
     }
 }

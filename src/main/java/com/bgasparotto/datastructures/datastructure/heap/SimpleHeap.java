@@ -1,6 +1,6 @@
 package com.bgasparotto.datastructures.datastructure.heap;
 
-import static com.bgasparotto.datastructures.algorithm.sort.common.ArrayOperations.swap;
+import static com.bgasparotto.datastructures.util.ArrayOperations.swap;
 import static com.bgasparotto.datastructures.datastructure.heap.TreeNodeLocator.parentOf;
 
 public class SimpleHeap {

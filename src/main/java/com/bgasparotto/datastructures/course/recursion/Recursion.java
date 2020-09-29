@@ -1,4 +1,4 @@
-package com.bgasparotto.datastructures;
+package com.bgasparotto.datastructures.course.recursion;
 
 public class Recursion {
     public static void main(String[] args) {
