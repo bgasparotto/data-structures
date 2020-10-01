@@ -399,3 +399,15 @@ A Heap is a special type of binary tree, of which the following requirements are
   1. We compare the new item against its parent:
   2. If the item is greater than its parent (for max heap), we swap them;
   3. Repeat until we compare with the root, or the new value is less than the parent.
+  
+### Deletion
+- Must choose a replacement value;
+- Should take the rightmost leaf at `array[n - 1]`, so the tree remains complete;
+- Then we heapify the tree again:
+  1. We compare the replacement item against the parent;
+  2. If the replacement is greater than the parent, then we fix the tree above similarly as insert,
+     by swapping the replacement value with the parent;
+  3. Otherwise, we fix the heap below, by swapping the replacement value with the larger of its
+     two children;
+  4. Repeat in either cases until the replacement value is in its correct position.
+- Important: you only need to fix up or down, not both.
