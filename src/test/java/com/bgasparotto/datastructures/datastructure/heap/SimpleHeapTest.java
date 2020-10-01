@@ -4,8 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class SimpleHeapTest {
     private SimpleHeap heap;
@@ -19,8 +22,7 @@ public class SimpleHeapTest {
     public void shouldAddElementsWhenChildrenAreLessThanParents() {
         addAll(heap, 22, 19, 18, 15, 3, 14, 4, 12);
 
-        int[] heapArray = extractBackingArray();
-        assertThat(heapArray).containsSequence(22, 19, 18, 15, 3, 14, 4, 12);
+        assertHeapContainsSequence(22, 19, 18, 15, 3, 14, 4, 12);
     }
 
     @Test
@@ -29,14 +31,91 @@ public class SimpleHeapTest {
 
         heap.add(20); // Should become left child of 22, replacing 19 positions.
 
-        int[] heapArray = extractBackingArray();
-        assertThat(heapArray).containsSequence(22, 20, 18, 19, 3, 14, 4, 12, 15);
+        assertHeapContainsSequence(22, 20, 18, 19, 3, 14, 4, 12, 15);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenTryingToRemoveRootWhenTreeIsEmpty() {
+        assertThatThrownBy(() -> heap.deleteRoot())
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("Empty tree has no root");
+    }
+
+    @Test
+    public void shouldRemoveAndReturnRootElementReorderingTheHeapAccordingly() {
+        addAll(heap, 80, 75, 60, 68, 55, 40, 52, 67);
+
+        int rootValue = heap.deleteRoot();
+
+        assertThat(rootValue).isEqualTo(80);
+        assertHeapContainsSequence(75, 68, 60, 67, 55, 40, 52);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenTryingToRemoveValueNotInTheTree() {
+        addAll(heap, 80, 75, 60, 68, 55, 40, 52, 67);
+
+        assertThatThrownBy(() -> heap.delete(99))
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("Tree does not have the value 99");
+        assertHeapContainsSequence(80, 75, 60, 68, 55, 40, 52, 67);
+    }
+
+    @Test
+    public void shouldRemoveElementAndReorderWhenReplacementValueIsLessThanParents() {
+        addAll(heap, 80, 75, 60, 68, 55, 40, 52, 67);
+
+        heap.delete(75);
+
+        assertHeapContainsSequence(80, 68, 60, 67, 55, 40, 52);
+    }
+
+    @Test
+    public void shouldRemoveElementAndReorderWhenReplacementValueIsGreaterThanParents() {
+        addAll(heap, 80, 75, 60, 68, 55, 40, 52, 67);
+
+        heap.delete(40);
+
+        assertHeapContainsSequence(80, 75, 67, 68, 55, 60, 52);
+    }
+
+    @Test
+    public void indexOfShouldReturnEmptyOptionalWhenValueDoesNotExist() {
+        addAll(heap, 80, 75, 60);
+
+        Optional<Integer> optionalIndex = heap.indexOf(99);
+        assertThat(optionalIndex).isEmpty();
+    }
+
+    @Test
+    public void indexOfShouldReturnOptionalOfIntegerWhenValueExists() {
+        addAll(heap, 80, 75, 60);
+
+        Optional<Integer> optionalIndex = heap.indexOf(75);
+        assertThat(optionalIndex).isPresent();
+        assertThat(optionalIndex).contains(1);
+    }
+
+    @Test
+    public void isEmptyShouldReturnTrueWhenHeapHasNoElements() {
+        assertThat(heap.isEmpty()).isTrue();
+    }
+
+    @Test
+    public void isEmptyShouldReturnFalseWhenHeapHasAtLeastOneElement() {
+        heap.add(20);
+        assertThat(heap.isEmpty()).isFalse();
     }
 
     private void addAll(SimpleHeap tree, int... values) {
         for (int value : values) {
             tree.add(value);
         }
+    }
+
+    private void assertHeapContainsSequence(int... expected) {
+        int[] heapArray = extractBackingArray();
+        assertThat(heapArray).containsSequence(expected);
     }
 
     private int[] extractBackingArray() {
