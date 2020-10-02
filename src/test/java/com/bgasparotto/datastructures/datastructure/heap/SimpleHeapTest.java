@@ -52,7 +52,7 @@ public class SimpleHeapTest {
     public void shouldThrowExceptionWhenTryingToRemoveRootWhenTreeIsEmpty() {
         assertThatThrownBy(() -> heap.deleteRoot())
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Empty tree has no root");
+                .hasMessage("Empty heap has no root");
     }
 
     @Test
@@ -71,7 +71,7 @@ public class SimpleHeapTest {
 
         assertThatThrownBy(() -> heap.delete(99))
                 .isInstanceOf(NoSuchElementException.class)
-                .hasMessage("Tree does not have the value 99");
+                .hasMessage("Heap does not have the value 99");
         assertHeapContainsSequence(80, 75, 60, 68, 55, 40, 52, 67);
     }
 

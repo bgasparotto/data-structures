@@ -61,7 +61,7 @@ public class SimpleHeap {
 
     public int deleteRoot() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Empty tree has no root");
+            throw new NoSuchElementException("Empty heap has no root");
         }
         return deleteAtIndex(0);
     }
@@ -69,7 +69,7 @@ public class SimpleHeap {
     public int delete(int value) {
         return indexOf(value)
                 .map(this::deleteAtIndex)
-                .orElseThrow(() -> new NoSuchElementException("Tree does not have the value " + value));
+                .orElseThrow(() -> new NoSuchElementException("Heap does not have the value " + value));
     }
 
     private int deleteAtIndex(int index) {
