@@ -370,6 +370,8 @@ A Heap is a special type of binary tree, of which the following requirements are
    - *Max heap*: every parent node is greater than of equal to its children, or:
    - *Min heap*: every parent node is less than or equal to its children.
   
+- Heaps are usually adopted when you need a data structure that always remove the max or min value 
+  from it.
 - Children are added at each level from left to right;
 - Heaps are usually implemented as arrays;
 - The maximum or minimum value will always be at the root of the tree, which is the advantage of
@@ -393,14 +395,18 @@ A Heap is a special type of binary tree, of which the following requirements are
   - *Right child*: `2i + 2`;
   - *Parent*: `floor((i - 1) / 2)`;
   
-### Insertion
+### Insertion O(log n)
 - Always add new items to the end of the array;
 - Then we have to fix the heap (heapify):
   1. We compare the new item against its parent:
   2. If the item is greater than its parent (for max heap), we swap them;
   3. Repeat until we compare with the root, or the new value is less than the parent.
+
+### Peek O(1)
+- Simply returns the value at `array[0]`, which will always be the max or min value depending on the
+  heap type.
   
-### Deletion
+### Deletion O(log n) from root or O(n log n) for arbitrary values
 - Must choose a replacement value;
 - Should take the rightmost leaf at `array[n - 1]`, so the tree remains complete;
 - Then we heapify the tree again:
