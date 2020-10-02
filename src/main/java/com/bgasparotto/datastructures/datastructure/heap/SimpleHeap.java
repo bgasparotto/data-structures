@@ -52,6 +52,13 @@ public class SimpleHeap {
         return nodeValue > parentValue;
     }
 
+    public int peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Heap is empty");
+        }
+        return elements[0];
+    }
+
     public int deleteRoot() {
         if (isEmpty()) {
             throw new NoSuchElementException("Empty tree has no root");

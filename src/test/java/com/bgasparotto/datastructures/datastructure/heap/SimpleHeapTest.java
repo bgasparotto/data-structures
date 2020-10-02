@@ -35,6 +35,20 @@ public class SimpleHeapTest {
     }
 
     @Test
+    public void shouldReturnTheRootValueWhenPeekIsCalled() {
+        addAll(heap, 22, 19, 18, 15);
+
+        assertThat(heap.peek()).isEqualTo(22);
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenTryingToPeekAnEmptyTree() {
+        assertThatThrownBy(() -> heap.peek())
+                .isInstanceOf(NoSuchElementException.class)
+                .hasMessage("Heap is empty");
+    }
+
+    @Test
     public void shouldThrowExceptionWhenTryingToRemoveRootWhenTreeIsEmpty() {
         assertThatThrownBy(() -> heap.deleteRoot())
                 .isInstanceOf(NoSuchElementException.class)
