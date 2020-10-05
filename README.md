@@ -1,5 +1,6 @@
 # Data Structures and Algorithms
-**Data Structures** organise and store data. Some examples of it are arrays and trees.
+**Data Structures** organise and store data. Some examples of it are arrays and trees. *Bounded* 
+data structures impose a storage limit, whereas *unbounded* are limitless.
 
 **Algorithms** describe the steps you have to perform in order to accomplish a specific task. For
   example, a sorting algorithm.
