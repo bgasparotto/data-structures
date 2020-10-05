@@ -59,7 +59,7 @@ public class SimpleHeap {
         return elements[0];
     }
 
-    public int deleteRoot() {
+    public int poll() {
         if (isEmpty()) {
             throw new NoSuchElementException("Empty heap has no root");
         }

@@ -49,17 +49,17 @@ public class SimpleHeapTest {
     }
 
     @Test
-    public void shouldThrowExceptionWhenTryingToRemoveRootWhenTreeIsEmpty() {
-        assertThatThrownBy(() -> heap.deleteRoot())
+    public void shouldThrowExceptionWhenTryingToPollWhenTreeIsEmpty() {
+        assertThatThrownBy(() -> heap.poll())
                 .isInstanceOf(NoSuchElementException.class)
                 .hasMessage("Empty heap has no root");
     }
 
     @Test
-    public void shouldRemoveAndReturnRootElementReorderingTheHeapAccordingly() {
+    public void shouldPollAndReturnRootElementReorderingTheHeapAccordingly() {
         addAll(heap, 80, 75, 60, 68, 55, 40, 52, 67);
 
-        int rootValue = heap.deleteRoot();
+        int rootValue = heap.poll();
 
         assertThat(rootValue).isEqualTo(80);
         assertHeapContainsSequence(75, 68, 60, 67, 55, 40, 52);

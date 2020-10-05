@@ -381,6 +381,11 @@ A Heap is a special type of binary tree, of which the following requirements are
 - There is no required ordering among siblings. The important relation between values is just among
   parents and children.
   
+## Heap and the JDK
+- `java.util.PriorityQueue<E>` is the implementation of a min heap. As opposite to normal queues 
+  (FIFO), the elements are removed from a priority queue according to the highest priority instead 
+  of the insertion order.
+  
 ## Heaps as Arrays
 ![Binary Search Tree example](../../../../../../../images/heap_as_array_example.png)
 
@@ -406,7 +411,7 @@ A Heap is a special type of binary tree, of which the following requirements are
 - Simply returns the value at `array[0]`, which will always be the max or min value depending on the
   heap type.
   
-### Deletion O(log n) from root or O(n log n) for arbitrary values
+### Deletion O(log n) from root (poll) or O(n log n) for arbitrary values
 - Must choose a replacement value;
 - Should take the rightmost leaf at `array[n - 1]`, so the tree remains complete;
 - Then we heapify the tree again:
