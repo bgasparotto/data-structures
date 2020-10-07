@@ -242,3 +242,14 @@ reach `1`.
      values in the bucket `x + 1`. **The hash function must meet this requirement**.
 2. Sort the items in each bucket using another sort algorithm;
 3. *Gathering phase*: Merge the buckets by concatenating them.
+
+## Heap Sort O(n log n)
+- In-place algorithm;
+- Uses a max heap as the backing data structure;
+- We know the root is the largest element;
+
+### Heap Sorted Implementation
+1. Swap the root with the last element in the array;
+2. Decrease the last index, so the last element that now contains the root, is logically excluded;
+3. Heapify the three (excluding the last node that has been replaced by the root)
+4. Repeat
