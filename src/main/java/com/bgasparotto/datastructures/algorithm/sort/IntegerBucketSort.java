@@ -3,7 +3,7 @@ package com.bgasparotto.datastructures.algorithm.sort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntegerBucketSorter {
+public class IntegerBucketSort {
     public static final int NUMBER_OF_BUCKETS = 10;
 
     public void sort(int[] input) {

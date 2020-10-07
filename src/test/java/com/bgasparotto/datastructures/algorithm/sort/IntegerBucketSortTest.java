@@ -1,12 +1,11 @@
-package com.bgasparotto.datastructures.algorithm;
+package com.bgasparotto.datastructures.algorithm.sort;
 
-import com.bgasparotto.datastructures.algorithm.sort.IntegerBucketSorter;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class IntegerBucketSortTest {
-    private final IntegerBucketSorter sorter = new IntegerBucketSorter();
+    private final IntegerBucketSort sorter = new IntegerBucketSort();
 
     @Test
     public void shouldSortOneDigitPositiveIntegerInputArray() {
