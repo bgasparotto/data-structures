@@ -422,3 +422,7 @@ A Heap is a special type of binary tree, of which the following requirements are
      two children;
   4. Repeat in either cases until the replacement value is in its correct position.
 - Important: you only need to fix up or down, not both.
+
+# Sets
+- Abstract data structure that does not allow duplicates;
+- It can be implemented with any backing data structure.
