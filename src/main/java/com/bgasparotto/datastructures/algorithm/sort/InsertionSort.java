@@ -1,11 +1,7 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class InsertionSort {
-    public static void main(String[] args) {
-        int[] array = {20, 35, -15, 7, 55, 1, -22};
-
+    public void sort(int[] array) {
         int firstUnsortedIndex = 1;
         for (int i = firstUnsortedIndex; i < array.length; i++) {
             int newElement = array[i];
@@ -16,7 +12,5 @@ public class InsertionSort {
             }
             array[j + 1] = newElement;
         }
-
-        print(array);
     }
 }

@@ -1,17 +1,11 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class MergeSort {
-
-    public static void main(String[] args) {
-        int[] array = {20, 35, -15, 7, 55, 1, -22};
-
+    public void sort(int[] array) {
         mergeSort(array, 0, array.length);
-        print(array);
     }
 
-    private static void mergeSort(int[] array, int start, int end) {
+    private void mergeSort(int[] array, int start, int end) {
         if (isSingleElementPartition(start, end)) {
             return;
         }
@@ -22,11 +16,11 @@ public class MergeSort {
         merge(array, start, mid, end);
     }
 
-    private static boolean isSingleElementPartition(int start, int end) {
+    private boolean isSingleElementPartition(int start, int end) {
         return (end - start) <= 1;
     }
 
-    private static void merge(int[] array, int start, int mid, int end) {
+    private void merge(int[] array, int start, int mid, int end) {
         if (isLeftPartitionLessThanRightPartition(array, mid)) {
             return;
         }
@@ -64,7 +58,7 @@ public class MergeSort {
      * Optimisation: if the last element from left partition is less than the first element of the right partition,
      * considering both array partitions are individually sorted, then the pair of partitions is also already sorted
      */
-    private static boolean isLeftPartitionLessThanRightPartition(int[] array, int mid) {
+    private boolean isLeftPartitionLessThanRightPartition(int[] array, int mid) {
         return array[mid - 1] <= array[mid];
     }
 }

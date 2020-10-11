@@ -1,15 +1,6 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class RadixSort {
-    public static void main(String[] args) {
-        int[] array = {4725, 4586, 1330, 8792, 1594, 5729};
-
-        RadixSort sorter = new RadixSort();
-        sorter.sort(array, 10, 4);
-        print(array);
-    }
 
     public void sort(int[] array, int radix, int width) {
         for (int i = width; i > 0; i--) {

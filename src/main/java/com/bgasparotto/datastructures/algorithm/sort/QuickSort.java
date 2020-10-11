@@ -1,17 +1,14 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
 import static com.bgasparotto.datastructures.util.ArrayOperations.swap;
 
 public class QuickSort {
 
-    public static void main(String[] args) {
-        int[] array = {20, 35, -15, 7, 55, 1, -22};
+    public void sort(int[] array) {
         quickSort(array, 0, array.length);
-        print(array);
     }
 
-    public static void quickSort(int[] array, int start, int end) {
+    private void quickSort(int[] array, int start, int end) {
         if (end - start < 2) { // if one-element partition
             return;
         }
@@ -21,7 +18,7 @@ public class QuickSort {
         quickSort(array, pivotIndex + 1, end);
     }
 
-    public static int partition(int[] array, int start, int end) {
+    private int partition(int[] array, int start, int end) {
         int pivot = array[start];
         int leftBorder = start + 1;
 
