@@ -10,7 +10,7 @@ public class RadixSortTest {
     private final int[] inputRadix10Width4 = {4725, 4586, 1330, 8792, 1594, 5729};
 
     @Test
-    public void shouldSortInputArrayOfDiscreteNumbers() {
+    public void shouldSortInputOfSpecifiedMatchingRadixAndWidth() {
         int radix = 10;
         int width = 4;
 
