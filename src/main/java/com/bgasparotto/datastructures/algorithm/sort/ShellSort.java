@@ -1,11 +1,8 @@
 package com.bgasparotto.datastructures.algorithm.sort;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class ShellSort {
-    public static void main(String[] args) {
-        int[] array = {20, 35, -15, 7, 55, 1, -22};
 
+    public void sort(int[] array) {
         for (int gap = array.length / 2; gap >= 1; gap /= 2) {
             for (int i = gap; i < array.length; i++) { // i = right index
                 int newElement = array[i];
@@ -17,7 +14,5 @@ public class ShellSort {
                 array[j + gap] = newElement;
             }
         }
-
-        print(array);
     }
 }
