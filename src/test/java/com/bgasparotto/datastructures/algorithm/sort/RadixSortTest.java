@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RadixSortTest {
     private final RadixSort sorter = new RadixSort();
-
     private final int[] inputRadix10Width4 = {4725, 4586, 1330, 8792, 1594, 5729};
 
     @Test
