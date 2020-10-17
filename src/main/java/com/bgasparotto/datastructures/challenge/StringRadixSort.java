@@ -1,16 +1,6 @@
 package com.bgasparotto.datastructures.challenge;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class StringRadixSort {
-
-    public static void main(String[] args) {
-        String[] array = {"bcdef", "dbaqc", "abcde", "omadd", "bbbbb"};
-
-        StringRadixSort sorter = new StringRadixSort();
-        sorter.sort(array, 26, 5);
-        print(array);
-    }
 
     public void sort(String[] array, int radix, int width) {
         for (int i = width - 1; i >= 0; i--) {
