@@ -1,16 +1,11 @@
 package com.bgasparotto.datastructures.challenge;
 
-import static com.bgasparotto.datastructures.util.ArrayOperations.print;
-
 public class DescendingOrderMergeSort {
-    public static void main(String[] args) {
-        int[] array = {20, 35, -15, 7, 55, 1, -22};
-
+    public void sort(int[] array) {
         mergeSort(array, 0, array.length);
-        print(array);
     }
 
-    private static void mergeSort(int[] array, int start, int end) {
+    private void mergeSort(int[] array, int start, int end) {
         if (isSingleElementPartition(start, end)) {
             return;
         }
@@ -21,11 +16,11 @@ public class DescendingOrderMergeSort {
         merge(array, start, mid, end);
     }
 
-    private static boolean isSingleElementPartition(int start, int end) {
+    private boolean isSingleElementPartition(int start, int end) {
         return (end - start) <= 1;
     }
 
-    private static void merge(int[] array, int start, int mid, int end) {
+    private void merge(int[] array, int start, int mid, int end) {
         if (isLeftPartitionGreaterThanRightPartition(array, mid)) {
             return;
         }
@@ -59,7 +54,7 @@ public class DescendingOrderMergeSort {
         }
     }
 
-    private static boolean isLeftPartitionGreaterThanRightPartition(int[] array, int mid) {
+    private boolean isLeftPartitionGreaterThanRightPartition(int[] array, int mid) {
         return array[mid - 1] >= array[mid];
     }
 }
