@@ -1,9 +1,11 @@
 # Data Structures and Algorithms
-**Data Structures** organise and store data. Some examples of it are arrays and trees. *Bounded* 
+
+[Data Structures](src/main/java/com/bgasparotto/datastructures/datastructure/README.md) organise and store data. Some examples of it are arrays and trees. *Bounded* 
 data structures impose a storage limit, whereas *unbounded* are limitless.
 
 **Algorithms** describe the steps you have to perform in order to accomplish a specific task. For
-  example, a sorting algorithm.
+example, [sorting](src/main/java/com/bgasparotto/datastructures/algorithm/sort/README.md) and 
+[search](src/main/java/com/bgasparotto/datastructures/algorithm/search/README.md) algorithms.
 
 ## Big-O Notation
 - The Big-O notation is a way of expressing the ***time complexity*** of an algorithm related to the
