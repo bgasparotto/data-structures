@@ -179,6 +179,14 @@ implement it with any data structure;
 | Peek             | O(1)            | O(1)                     |
 ```
 
+### Queues in the JDK
+Interface `Queue<E>` and its implementations:
+- `LinkedList<E>`
+- `LinkedBlockingQueue<E>`
+- `ArrayBlockingQueue<E>`
+- `PriorityQueue<E>`
+- `PriorityBlockingQueue<E>`
+
 # Hashtables (Maps, Dictionaries)
 - It's an abstract data type;
 - Consists of key/value pairs;
@@ -239,6 +247,13 @@ these collisions can be handled with:
 3. Set the value stored at the hashed key as null;
 4. Rehash the element data storage if linear probing is being used.
 
+### Hashtables in the JDK
+Interface `Map<K, V>` and its implementations:
+- `HashMap<K, V>`
+- `ConcurrentHashMap<K, V>`
+- `ConcurrentHashMap<K, V>`
+- `Hashtable<K, V>`
+
 ### Hashtable Operation Costs
 The table below demonstrates the time complexity of the Hashtable operations, when no hash key
 collision happens and when they happen and are handled by a specific algorithm.
@@ -287,8 +302,8 @@ k: average length of the linked lists in a chained hash table
   - A file system, where the root node is the `/` folder;
 
 ### Trees in the JDK:
-- `TreeMap`
-- `TreeSet`
+- `TreeMap<K, V>`
+- `TreeSet<E>`
   
 ### Complete Binary Tree
 A binary tree is **complete** if every level, except the last level, has two children, and at the 
