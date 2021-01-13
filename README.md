@@ -1,7 +1,8 @@
 # Data Structures and Algorithms
 
-[Data Structures](src/main/java/com/bgasparotto/datastructures/datastructure/README.md) organise and store data. Some examples of it are arrays and trees. *Bounded* 
-data structures impose a storage limit, whereas *unbounded* are limitless.
+[Data Structures](src/main/java/com/bgasparotto/datastructures/datastructure/README.md) organise and
+store data. Some examples of it are arrays and trees. *Bounded* data structures impose a storage 
+limit, whereas *unbounded* are limitless.
 
 **Algorithms** describe the steps you have to perform in order to accomplish a specific task. For
 example, [sorting](src/main/java/com/bgasparotto/datastructures/algorithm/sort/README.md) and 
@@ -40,13 +41,13 @@ by different time complexity expressions:
 ## Recursion
 - A recursive method is a method that calls itself.
 - In order to recursion to work properly, you need a condition that ends the recursion. 
-  This condition is know as the ***breaking condition***, or the ***base case***.
+  This condition is know as the ***breaking condition*** or ***base case***.
 - When the recursive call satisfies the base case, one says the recursion *starts to unwind*.
-- However, if no base case is provided, the recursive call stack will grow indefinitely and will
-  resulting in a `StackOverflowError`.
+- However, if no base case is provided, the recursive call stack will grow indefinitely resulting in
+  a `StackOverflowError`.
 - Usually, an iterative implementation (such as a *for* loop) runs faster and doesn't use as much
-  memory than recursion. However, sometimes the iterative algorithm isn't as intuitive and as short
-  as the recursive algorithm.
+  memory as recursion. However, sometimes the iterative algorithm isn't as intuitive and as short as
+  the recursive algorithm.
 - Lastly, even when you provide a base case, you can face a `StackOverflowError` if the number of
   calls is too high. Languages such as Scala support
   [tail recursion](https://www.drdobbs.com/jvm/tail-call-optimization-and-java/240167044) which 

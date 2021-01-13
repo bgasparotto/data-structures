@@ -11,7 +11,7 @@
   calculate the memory address `a` of the `i` ith element by using the expression `a = x + i * y`.
 - If we know the index of an element, the time to retrieve the element will be the same, no matter
   where it is in the array.
-- That means that if we know the index `i` of an element, arrays are fast for retrieving data.
+- That means that if we know the index `i` of the element, arrays will retrieve it fast.
 
 ***Example***: given an array with the start address of `x = 12` in memory, and an element size of `y = 4` bytes, the
 formula `a = x + i * y` applies as follows:
@@ -70,8 +70,9 @@ Time complexity is ***O(n)***:
 # Lists
 - It's an abstract data type;
 - It's an ordered collection (also known as sequence);
-- It's good for random access (by index) as the operations are `O(1)`, but additional on a list out
-  of capacity or at a specific index, and deletion are `O(n)`.
+- It's good for random access (by index) as the operations are `O(1)`; 
+- However, adding to a list out that is out of capacity or at a specific index; and deleting from it
+  will have cost `O(n)`.
 - The user has control where the element is inserted and can retrieve by its index;
 - Popular implementations of List are *ArrayList* and *LinkedList*;
 - To implement your own List, either extend `AbstractList` or `AbstractSequentialList`, as they give
@@ -88,8 +89,8 @@ Time complexity is ***O(n)***:
 - The items are called *nodes*;
 - The first node is called *head*, as in head of the list;
 - Every node, besides carrying its data, carries a reference (link) to the next node;
-- The last node is called *tail* always point to `null`, because nothing comes after it;
-- The list has only to store the reference of the first node (head);
+- The last node is called *tail* and always point to `null`, because nothing comes after it;
+- The list has only to store the reference to the first node (head);
 
 > *Circular Linked List*
 >
@@ -97,20 +98,20 @@ Time complexity is ***O(n)***:
 > transverse the whole list starting at any point.
 
 #### Insertion O(1)
-You only insert elements at the front of the list, otherwise you would need to transverse all nodes
+You only insert elements at the front of the list, otherwise you would need to traverse all nodes
 until you get to the last node.
 1. Create the new node;
 2. Assign the current head node as the link of the new node;
 3. Assign the new node to the head of the list;
 
 #### Deletion O(1)
-You also want to delete from the front of the list, so you don't have to transverse all nodes
+You also want to delete from the front of the list, so you don't have to traverse all nodes
 1. Obtain the head node;
 2. Assign the *next* field of the head node to the List's head node;
 
 ## Doubly Linked Lists
 - In spite of having a **head** node reference, it also has a **tail**;
-- every node in the list has a link to the *next* and *previous* node;
+- Every node in the list has a link to the *next* and *previous* nodes;
 - Operations on either head or tail nodes are O(1);
 
 #### Insertion at head O(1)
@@ -141,9 +142,9 @@ You also want to delete from the front of the list, so you don't have to transve
 - Standard operations are:
   - **Push**: adds an item to the top of the stack;
   - **Pop**: removes the top item of the stack;
-  - **Peek**: gets the top item of the stack without popping it
+  - **Peek**: gets the top item of the stack without popping it.
 - A *linked list* is the ideal backing data structure for a stack, however, it is possible to 
-implement it with any data structure;
+  implement it with any data structure;
 - An *array* would be a good choice **if**:
   - You know the maximum number of items the stack will hold;
   - Memory is tight.
@@ -164,11 +165,11 @@ implement it with any data structure;
 - Standard operations are:
   - **Enqueue (Add)**: adds an item to the end of the queue;
   - **Dequeue (Remove)**: removes the item at the front of the queue;
-  - **Peek**: gets the item at the front of the queue, without removing it;
+  - **Peek**: gets the item at the front of the queue, without removing it.
 - Two popular data structures for implementing queues are *arrays* and *linked lists*
-- *Linked list* implementations provide all operations with O(1);
+- *Linked list* (doubly-linked) implementations provide all operations with O(1);
 - *Array* implementations, similarly to stack array implementations, provide the operations with 
-  O(1) if no resize is needed, O(n) otherwise.
+  O(1) if no resize is needed, but O(n) otherwise.
 
 ### Queue Operation Costs
 ```
@@ -190,10 +191,10 @@ Interface `Queue<E>` and its implementations:
 # Hashtables (Maps, Dictionaries)
 - It's an abstract data type;
 - Consists of key/value pairs;
-  - Keys could be of any type
-  - Values could also be of any type and don't have to match the key types 
-- Optimised for retrieval when you know the key
-- A common data structure for backing a hashtable is an array, but any structure could be used.
+  - Keys could be of any type;
+  - Values could also be of any type and don't have to match the key types.
+- Optimised for retrieval when you know the key;
+- A common data structure for backing a hashtable is an array, but any structure could be used;
 - The key for better performance on a hash table is to provide a good hashing algorithm, which
   distributes the stored values as consistently as possible across the underlying storage structure.
 
@@ -251,12 +252,11 @@ these collisions can be handled with:
 Interface `Map<K, V>` and its implementations:
 - `HashMap<K, V>`
 - `ConcurrentHashMap<K, V>`
-- `ConcurrentHashMap<K, V>`
 - `Hashtable<K, V>`
 
 ### Hashtable Operation Costs
 The table below demonstrates the time complexity of the Hashtable operations, when no hash key
-collision happens and when they happen and are handled by a specific algorithm.
+collision happens and when they do happen then are handled by a specific algorithm.
 ```
 | Operation | No Collision | Linear Probing |   Chaining    |
 |-----------|--------------|----------------|---------------|
@@ -268,7 +268,7 @@ k: average length of the linked lists in a chained hash table
 ```
 
 # Trees
-- Trees could be classified as either data structures or abstract data types, since it is possible
+- Trees could be classified as either data structures, or abstract data types given it is possible
   to back a tree using an array. For the sake of the exercise, we will look into them as a data
   structure.
 - Tree is a hierarchical data structure.
