@@ -2,9 +2,13 @@ plugins {
     id 'java'
 }
 
-group 'com.bgasparotto'
-version '1.0-SNAPSHOT'
-sourceCompatibility = '11'
+group = 'com.bgasparotto'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
@@ -12,5 +16,10 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
-    testImplementation 'org.assertj:assertj-core:3.16.1'
+    testImplementation 'org.assertj:assertj-core:3.27.7'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.6.2'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
 }
