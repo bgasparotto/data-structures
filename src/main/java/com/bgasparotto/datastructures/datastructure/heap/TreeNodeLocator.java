@@ -1,7 +1,7 @@
 package com.bgasparotto.datastructures.datastructure.heap;
 
 /**
- * Finds the relative nods of a given node on index i, then returning:
+ * Finds the relative nodes of a given node on index i, then returning:
  * <pre>
  * Parent at: floor((i - 1) / 2);
  * Left child at: 2i + 1;

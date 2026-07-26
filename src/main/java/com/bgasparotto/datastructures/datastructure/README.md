@@ -71,8 +71,8 @@ Time complexity is ***O(n)***:
 - It's an abstract data type;
 - It's an ordered collection (also known as sequence);
 - It's good for random access (by index) as the operations are `O(1)`; 
-- However, adding to a list out that is out of capacity or at a specific index; and deleting from it
-  will have cost `O(n)`.
+- However, adding to a list that is out of capacity or at a specific index; and deleting from it will
+have cost `O(n)`.
 - The user has control where the element is inserted and can retrieve by its index;
 - Popular implementations of List are *ArrayList* and *LinkedList*;
 - To implement your own List, either extend `AbstractList` or `AbstractSequentialList`, as they give
