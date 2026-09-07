@@ -159,6 +159,17 @@ You also want to delete from the front of the list, so you don't have to travers
 | Peek      | O(1)            | O(1)                     |
 ```
 
+### Stacks in the JDK
+
+A good backing type for a stack, represented by the `Deque<E>` interface, is a `LinkedList<E>` as it is doubly linked,
+as it has head and tail elements resulting in O (1) insertion and removal.
+
+```java
+Deque<Integer> stack = new LinkedList<>(List.of(2, 5, 3));
+stack.push(8);
+var eight = stack.pop();
+```
+
 # Queues
 - It's an abstract data type;
 - FIFO: First In, First Out;
@@ -181,12 +192,27 @@ You also want to delete from the front of the list, so you don't have to travers
 ```
 
 ### Queues in the JDK
+
 Interface `Queue<E>` and its implementations:
-- `LinkedList<E>`
-- `LinkedBlockingQueue<E>`
-- `ArrayBlockingQueue<E>`
-- `PriorityQueue<E>`
-- `PriorityBlockingQueue<E>`
+
+- `LinkedList<E>`: Doubly linked list; not thread-safe.
+- `ArrayDeque<E>`: Resizable array; not thread-safe; Oracle claims it is likely faster than LinkedList as a queue.
+- `LinkedBlockingQueue<E>`: Thread-safe blocking queue backed by linked nodes, with optional capacity (defaults to
+  Integer.MAX_VALUE).
+- `ArrayBlockingQueue<E>`: Thread-safe blocking queue backed by a fixed-capacity array; put waits when full and take
+  waits when empty.
+- `PriorityQueue<E>`: Unbounded queue backed by an array-based **heap**; retrieves the least element by natural ordering
+  or a comparator; not thread-safe.
+- `PriorityBlockingQueue<E>`: Thread-safe, unbounded priority queue with the same ordering as PriorityQueue; take waits
+  when empty, while put never waits for space.
+
+```java
+// Example
+Queue<String> queue = new ArrayDeque<>();
+queue.offer("foo");
+queue.offer("bar");
+var foo = queue.poll();
+```
 
 # Hashtables (Maps, Dictionaries)
 - It's an abstract data type;
@@ -304,6 +330,11 @@ k: average length of the linked lists in a chained hash table
 ### Trees in the JDK:
 - `TreeMap<K, V>`
 - `TreeSet<E>`
+
+```java
+NavigableMap<Integer, String> treeMap = new TreeMap<>(); // Ordered by key. TreeMap also implements Map.
+NavigableSet<Integer> treeSet = new TreeSet<>(); // Ordered by value. TreeSet also implements Set
+```
   
 ### Complete Binary Tree
 A binary tree is **complete** if every level, except the last level, has two children, and at the 
@@ -348,6 +379,7 @@ A **full** binary tree is complete and has all last level nodes with both left a
 
 ### Traversal
 There are four ways of traversing trees:
+
 ![Binary Search Tree example](../../../../../../../images/binary_search_tree_example.png) 
 
 **Level**: visit nodes on each level (not used very often):
@@ -400,6 +432,15 @@ A Heap is a special type of binary tree, of which the following requirements are
 - `java.util.PriorityQueue<E>` is the implementation of a min heap. As opposite to normal queues 
   (FIFO), the elements are removed from a priority queue according to the highest priority instead 
   of the insertion order.
+
+```java
+Queue<Integer> minHeap = new PriorityQueue<>(List.of(5, 2, 8, 1, 3));
+var one = minHeap.poll();
+
+Queue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+maxHeap.addAll(List.of(5, 2, 8, 1, 3));
+var eight = maxHeap.poll();
+```
   
 ## Heaps as Arrays
 ![Binary Search Tree example](../../../../../../../images/heap_as_array_example.png)
